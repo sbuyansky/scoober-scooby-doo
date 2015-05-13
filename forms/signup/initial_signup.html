@@ -20,28 +20,16 @@
       </tr>
     </table>
     <br>
-
-    <button ng-click="reset()" disabled>RESET</button>
-    <button ng-click="save()" disabled>SAVE</button>
   </form>
   <p>Data to send = {{user}}</p>
-  <p>Most recent entry = {{master}}</p>
 </div>
 
 <script>
 var app = angular.module('myApp', []);
 app.controller('formCtrl', function($scope) {
-
-    $scope.reset = function() {
-      $scope.user = angular.copy($scope.master);
-    };
-    $scope.save = function() {
-      $scope.master = angular.copy($scope.user);
-    };
     $scope.submit = function() {
-      console.log("Submitted data: " + $scope.user);
+      console.log($scope);
     };
-    $scope.reset();
 });
 </script>
 
