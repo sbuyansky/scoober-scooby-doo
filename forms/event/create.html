@@ -40,9 +40,24 @@
       </tr>
       <tr>
         <td>Skill Level</td>
-        <td>
-          <input type="text" ng-model="event.SkillLevel" placeholder="<boring text box for now...>">
-        </td>
+        <td><input type="text" ng-model="event.SkillLevel" placeholder="<boring text box for now...>"></td>
+      </tr>
+      <tr>
+        <td>Event Type</td>
+        <td><input type="text" ng-model="event.EventType" placeholder="<Pickup? tourney? skinny-dipping?>"></td>
+      </tr>
+      <tr>
+        <td>Viewability of Event</td>
+        <td><input type="text" ng-model="event.Security" placeholder="<Public? Invite Only? Can request?>"></td>
+      </tr>
+      <tr>
+        <td>Gender(s) Invited</td>
+        <td><input type="text" ng-model="event.Gender" placeholder="<All male / female?>"></td>
+      </tr>
+      <tr>
+        <td>How many players?</td>
+        <td>Min: <input type="text" ng-model="event.Players.Min"></td>
+        <td>Max: <input type="text" ng-model="event.Players.Max"></td>
       </tr>
       <tr>
         <td>Invite Friends!</td>
