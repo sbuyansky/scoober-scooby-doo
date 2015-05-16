@@ -44,20 +44,47 @@
       </tr>
       <tr>
         <td>Event Type</td>
-        <td><input type="text" ng-model="event.EventType" placeholder="<Pickup? tourney? skinny-dipping?>"></td>
+        <td>
+          <select ng-model="event.EventType" ng-init="event.EventType='game'">
+            <option value="game">Game</option>
+            <option value="league">League</option>
+            <option value="pickup">Pickup</option>
+            <option value="practice">Practice</option>
+            <option value="tournament">Tournament</option>
+            <option value="workout">Workout</option>
+          </select>
+        </td>
       </tr>
       <tr>
         <td>Viewability of Event</td>
-        <td><input type="text" ng-model="event.Security" placeholder="<Public? Invite Only? Can request?>"></td>
+        <td>
+          <select ng-model="event.Security" ng-init="event.Security='public'">
+            <option value="public">Public</option>
+            <option value="inviteOnly">Invite Only</option>
+            <option value="canRequest">Can Request</option>
+            <option value="viewableWOInvite">Viewable without Invite</option>
+          </select>
+        </td>
       </tr>
       <tr>
-        <td>Gender(s) Invited</td>
-        <td><input type="text" ng-model="event.Gender" placeholder="<All male / female?>"></td>
+        <td>Gender</td>
+        <td>
+          <select ng-model="event.Gender" ng-init="event.Gender='mixed'">
+            <option value="mens">Men's</option>
+            <option value="womens">Women's</option>
+            <option value="mixed">Mixed</option>
+          </select>
+        </td>
+       </tr>
+       <tr>
+        <td>Ratio</td>
+        <td>Men: <input type="number" ng-model="event.GenderRatio.Men" placeholder="<men>" style="max-width:136px"></td>
+        <td>Women: <input type="number" ng-model="event.GenderRatio.Women" placeholder="<women>" style="max-width:115px"></td>
       </tr>
       <tr>
         <td>How many players?</td>
-        <td>Min: <input type="text" ng-model="event.Players.Min"></td>
-        <td>Max: <input type="text" ng-model="event.Players.Max"></td>
+        <td>Min: <input type="text" ng-model="event.Players.Min" style="max-width:138px"></td>
+        <td>Max: <input type="text" ng-model="event.Players.Max" style="max-width:136px"></td>
       </tr>
       <tr>
         <td>Invite Friends!</td>
