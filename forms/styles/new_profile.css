@@ -1,0 +1,33 @@
+div#popup {
+	background-color: white;
+	border: 4px solid black;
+	border-radius: 20px;
+}
+
+div#page {
+	background-color: green;
+}
+
+h3#welcome_text{
+	text-align: center;
+}
+
+div#submission{
+	text-align: center;
+}
+
+div#form_div{
+	width: 100%;
+	text-align: center;
+	border: 1px solid red;
+}
+div#menu_container{
+	width: 30%;
+	display:inline-block;
+	border: 1px solid black;
+}
+
+div#form_container{
+	display: inline-block;
+	border: 1px solid black;
+}
