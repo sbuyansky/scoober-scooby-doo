@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
+
+    <!--JS-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+    <script src="javascripts/app.js"></script>
+</head>
+
+<body ng-app="events" ng-controller="eventController">
+    <div class="container-fluid">
+        <h3>Create an event!</h3>
+        <hr>
+        <div>
+          <form novalidate>
+         Name <input type="text" ng-model="event.name"/>  <br/>
+         Sport <select ng-model="event.sport" ng-options="cat for cat in sportVals"/> </select>  <br/>
+         Security <select ng-model="event.security" ng-options="cat for cat in securityVals"/></select>  <br/>
+         Start Time: <input type="text" ng-model="event.start_time" id="time_start"/>  <br/>
+         End Time: <input type="text" ng-model="event.end_time" id="time_end"/>  <br/>
+         <!--location_x       | numeric(9,6)                | not null -->
+         <!--location_y       | numeric(9,6)                | not null -->
+         Location Name <input type="text" ng-model="event.loc.name"/>  <br/>
+         Location Description <textarea ng-model="event.loc.description"> </textarea>  <br/>
+         Event Type <select ng-model="event.type" ng-options="cat for cat in event_typeVals"></select>  <br/>
+         Gendered <select ng-model="event.gendered" ng-options="cat for cat in event_genderedVals"/></select>  <br/>
+         Gender Ratio <input type="text" ng-model="event.gender_ratio"/>  <br/>
+         <!-- skill_level_min  | integer                     | -->
+         <!-- skill_level_max  | integer                     | -->
+         Event Details <textarea ng-model="event.details"> </textarea>  <br/>
+         Event Status <select ng-model="event.stat" ng-options="cat for cat in event_statusVals"/></select>  <br/>
+         <!-- min_players      | integer                     | -->
+         <!-- max_players      | integer                     | -->
+         <!-- master_eid       | integer                     | -->
+         <!-- is_master        | boolean                     | not null default false -->
+         <!-- field_picture    | character varying(100)      | -->
+         <!-- Team 1 <select ng-model="event.team1" /> </select>  <br/>-->
+         <!-- Team 2 <select ng-model="event.team2" /></select>  <br/>-->
+         <!-- score_t1         | integer                     | -->
+         <!-- score_t2         | integer                     | -->
+
+            <button ng-click="createEvent()">Submit</button>
+          </form>
+          <p>Data to send = {{event}}</p>
+        </div>
+        <table class="table table-striped table-hover" >
+            <thead><tr>
+                <th>eid</th>
+                <th>Name</th>
+                <th>Security</th>
+            </tr></thead>
+            <tr ng-repeat="eventIter in eventData">
+                <td>{{eventIter.eid}} </td> 
+                <td>{{eventIter.name}} </td>
+                <td>{{eventIter.event_security}} </td>
+                <td><button ng-click="deleteEvent(eventIter.eid)" class="glyphicon glyphicon-remove"/></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

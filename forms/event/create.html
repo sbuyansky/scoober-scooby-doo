@@ -5,12 +5,12 @@
 
 <h3>Create an event!</h3>
 <hr>
-<div ng-app="myApp" ng-controller="eventCtrl">
+<div ng-app="events" ng-controller="eventController">
   <form novalidate>
     <table>
       <tr>
           <td>Event Name</td>
-          <td><input type="text" ng-model="event.EventName" required></td>
+          <td><input type="text" ng-model="event.Name" required></td>
       </tr>
       <tr>
         <td>Address</td>
@@ -99,7 +99,7 @@
       <br>
       <textarea rows="5" cols="50" ng-model="event.OtherInfo"></textarea>
     </p>
-    <button ng-click="submit()">Submit</button>
+    <button ng-click="createEvent()">Submit</button>
   </form>
   <p>Data to send = {{event}}</p>
 </div>

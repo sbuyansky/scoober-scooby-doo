@@ -1,0 +1,24 @@
+{
+  "name": "scoober-io",
+  "version": "0.0.0",
+  "description": "scoober io implementation",
+  "main": "public/stylesheets/style.css",
+  "moduleType": [
+    "globals"
+  ],
+  "authors": [
+    "Spencer Buyansky"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap-datetimepicker": "~0.3.12",
+    "bootstrap": "~3.3.4"
+  }
+}
