@@ -1,3 +1,5 @@
+console.log('inside users controller');
+
 var app = angular.module('accountCreate', []);
 
 app.controller('accountCreateController', function($scope, $http){
