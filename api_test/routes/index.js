@@ -30,6 +30,7 @@ router.get('/api/events', function(req,res){
     });
 });
 
+/* GET enums from server */
 router.get('/api/category/:category', function(req,res){
     var results = [];
         
@@ -52,6 +53,7 @@ router.get('/api/category/:category', function(req,res){
     });
 });
 
+/* Event table manipulation code */
 router.post('/api/events', function(req, res) {
         var results = [];
         console.log(req.body);
@@ -146,6 +148,84 @@ router.delete('/api/events/:eid', function(req, res) {
         client.query("DELETE FROM events WHERE eid=($1)", [id]);
 
         var query = client.query("SELECT * FROM events ORDER BY eid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {
+          console.log(err);
+        }
+
+    });
+
+});
+
+/* User table manipulation code */
+router.post('/api/users', function(req, res) {
+    var results = [];
+    console.log(req.body); // TODO remove console logging
+	// gather data to post
+	with(req.body){
+        var data = [
+			Username,
+			Email,
+			0,
+			"hunter2",
+			"abcd",
+			FirstName,
+			LastName,
+			"43.073052",
+			"-89.401230",
+			gender,
+			birthday,
+			aboutMe,
+			skillLevel,
+			phone,
+			position,
+			notifications,
+			lastLogin,
+			security
+			profileOrder
+	   ];
+    }
+	
+	// post data to the server
+	pg.connect(connectionString, function(err, client, done) {
+		client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name, last_name, location_x, location_y, user_gender, birthday, about_me, skill_level, phone_number, position, notifications, last_login, security, profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)", data);
+
+		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
+
+		query.on('row', function(row) {
+			results.push(row);
+		});
+
+		query.on('end', function() {
+			client.end();
+			return res.json(results);
+		});
+
+		if(err) {
+		  console.log(err);
+		}
+	});
+});
+
+router.delete('/api/users/:uid', function(req, res) {
+	
+    var results = [];
+    var id = req.params.uid;
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query("DELETE FROM users WHERE uid=($1)", [id]);
+
+        var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
         query.on('row', function(row) {
             results.push(row);
