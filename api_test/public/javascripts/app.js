@@ -13,6 +13,7 @@ app2.controller('accountCreateController', function($scope, $http){
     $http.get('/api/users')
         .success(function(data){
             $scope.userData = data;
+            debugger;
             console.log(data);
         })
         .error(function(error){
