@@ -17,6 +17,7 @@ router.get('/api/users', function(req,res){
 
 router.post('/api/users', function(req, res) {
     var results = [];
+    var test1 = 0;
     console.log('post /api/users req.body: ' + req.body);
 	with(req.body){
 	    var data = [
@@ -24,8 +25,10 @@ router.post('/api/users', function(req, res) {
 			Password,
 			"First"
 	    ];
-	    return data;
     }
+    if (test1===0) res.send("returning stuff");
+    if (test1===2) res.send("returning stuff -> " + data);
+    if (test1===1) return res.send("data: " + data);
 });
 
 router.delete('/api/users/:uid', function(req, res) {
