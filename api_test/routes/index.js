@@ -9,10 +9,11 @@ router.get('/', function(req, res, next) {
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
 
+console.log("here...?");
 // testing - not sure if this needs to go here or can go in its own file
 router.get('/api/users', function(req,res){
 	debugger;
-	return "hi"; // possibly should return object / array of objects w/ user data?
+	res.send("hi"); // possibly should return object / array of objects w/ user data?
 });
 
 router.post('/api/users', function(req, res) {
@@ -26,6 +27,7 @@ router.post('/api/users', function(req, res) {
 			"First"
 	    ];
     }
+    debugger;
     if (test1===0) res.send("returning stuff");
     if (test1===2) res.send("returning stuff -> " + data);
     if (test1===1) return res.send("data: " + data);
