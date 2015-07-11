@@ -20,7 +20,7 @@ router.get('/api/users', function(req,res){
     var results = [];
         
     pg.connect(connectionString, function(err, client, done) {
-		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
+		var query = client.query("SELECT * FROM users2 ORDER BY uid ASC");
 
 	        query.on('row', function(row) {
 	            results.push(row);
@@ -71,7 +71,7 @@ router.post('/api/users', function(req, res) {
 		//client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name, last_name, location_x, location_y, user_gender, birthday, about_me, skill_level, phone_number, position, notifications, last_login, security, profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)", data);
 		client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name) values($1,$2,$3,$4,$5,$6)", data);
 
-		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
+		var query = client.query("SELECT * FROM users2 ORDER BY uid ASC");
 
 		query.on('row', function(row) {
 			results.push(row);

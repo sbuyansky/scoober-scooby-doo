@@ -22,7 +22,7 @@ app2.controller('accountCreateController', function($scope, $http){
         });
 
     $scope.createUser = function() {
-        var passCopy = $scope.PassCopy;
+        var passCopy = $scope.user.PassCopy;
         // do some validation to make sure Password & PassCopy are the same
 
         debugger;
