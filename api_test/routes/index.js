@@ -9,34 +9,33 @@ router.get('/', function(req, res, next) {
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
 
-console.log("here...?");
+console.log("here.. in the main index.js router file");
 // testing - not sure if this needs to go here or can go in its own file
 router.get('/api/users', function(req,res){
-	debugger;
 	res.send("hi"); // possibly should return object / array of objects w/ user data?
 });
 
 router.post('/api/users', function(req, res) {
     var results = [];
-    var test1 = 0;
+    //var test1 = 0;
     console.log('post /api/users req.body: ' + req.body);
-	with(req.body){
+	/*with(req.body){
 	    var data = [
 			Email,
 			Password,
 			"First"
 	    ];
-    }
-    debugger;
-    if (test1===0) res.send("returning stuff");
-    if (test1===2) res.send("returning stuff -> " + data);
-    if (test1===1) return res.send("data: " + data);
+    }*/
+    res.send("success! returned... stuff");
+    //if (test1===0) res.send("returning stuff");
+    //if (test1===2) res.send("returning stuff -> " + data);
+    //if (test1===1) return res.send("data: " + data);
 });
 
 router.delete('/api/users/:uid', function(req, res) {
 	console.log("delete user");
 	debugger;
-	return "success?";
+	res.send("success?");
 });
 
 // events routes
