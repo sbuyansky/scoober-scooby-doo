@@ -13,6 +13,7 @@
             .error(function(error){
                 console.log(error);
             });
+
         $scope.createEvent = function(){
             $http.post('/api/events', $scope.event)
                 .success(function(data) {
