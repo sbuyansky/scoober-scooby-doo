@@ -26,7 +26,7 @@ router.post('/api/users', function(req, res) {
 			"First"
 	    ];
     }*/
-    res.send(["success! returned... stuff",req,res]);
+    res.send(["success! returned... stuff",req]);
     //if (test1===0) res.send("returning stuff");
     //if (test1===2) res.send("returning stuff -> " + data);
     //if (test1===1) return res.send("data: " + data);
@@ -189,9 +189,7 @@ router.delete('/api/events/:eid', function(req, res) {
         if(err) {
           console.log(err);
         }
-
     });
-
 });
 
 module.exports = router;

@@ -11,8 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/users', function(req,res){
-	debugger;
-	res.send("hi"); // possibly should return object / array of objects w/ user data?
+	res.send("hi. did we go here? users.js"); // possibly should return object / array of objects w/ user data?
 });
 
 router.post('/api/users', function(req, res) {
