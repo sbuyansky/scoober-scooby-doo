@@ -27,6 +27,7 @@ router.post('/api/users', function(req, res) {
     }
 });
 
+// probs won't ever use this... just thought i'd try it for fun
 router.post('/users/api/users', function(req, res) {
     var results = [];
     console.log(req.body);

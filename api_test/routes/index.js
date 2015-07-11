@@ -15,6 +15,40 @@ router.get('/api/users', function(req,res){
 	return "hi"; // possibly should return object / array of objects w/ user data?
 });
 
+router.post('/api/users', function(req, res) {
+    var results = [];
+    console.log(req.body);
+	with(req.body){
+	    var data = [
+			Email,
+			Password,
+			"First"
+	    ];
+	    return data;
+    }
+});
+
+// probs won't ever use this... just thought i'd try it for fun
+router.post('/users/api/users', function(req, res) {
+    var results = [];
+    console.log(req.body);
+	with(req.body){
+	    var data = [
+			Email,
+			Password,
+			"Second"
+	    ];
+	    return data;
+    }
+});
+
+router.delete('/api/users/:uid', function(req, res) {
+	console.log("delete user");
+	debugger;
+	return "success?";
+});
+
+// events routes
 router.get('/api/events', function(req,res){
     var results = [];
         
