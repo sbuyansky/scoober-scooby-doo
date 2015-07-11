@@ -23,7 +23,6 @@ app2.controller('accountCreateController', function($scope, $http){
         });
 
     $scope.createUser = function() {
-        debugger;
         // user variable is dynamically built by
         //  angular through HTML page [index.html]
         $http.post('/api/users', $scope.user)

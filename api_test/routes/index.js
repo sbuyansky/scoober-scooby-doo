@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 console.log("here.. in the main index.js router file");
 // testing - not sure if this needs to go here or can go in its own file
 router.get('/api/users', function(req,res){
-	res.send("hi"); // possibly should return object / array of objects w/ user data?
+	res.send("hi. successful get to /api/users"); // possibly should return object / array of objects w/ user data?
 });
 
 router.post('/api/users', function(req, res) {
@@ -26,7 +26,7 @@ router.post('/api/users', function(req, res) {
 			"First"
 	    ];
     }*/
-    res.send("success! returned... stuff");
+    res.send(["success! returned... stuff",req,res]);
     //if (test1===0) res.send("returning stuff");
     //if (test1===2) res.send("returning stuff -> " + data);
     //if (test1===1) return res.send("data: " + data);
