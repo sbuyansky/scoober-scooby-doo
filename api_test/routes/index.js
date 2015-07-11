@@ -20,7 +20,7 @@ router.get('/api/users', function(req,res){
     var results = [];
         
     pg.connect(connectionString, function(err, client, done) {
-		var query = client.query("SELECT * FROM users ORDER BY eid ASC");
+		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
 	        query.on('row', function(row) {
 	            results.push(row);
