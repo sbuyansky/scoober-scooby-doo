@@ -19,6 +19,7 @@ router.post('/api/users', function(req, res) {
     var results = [];
     console.log(req.body);
 	with(req.body){
+		debugger;
 	    var data = [
 			Email,
 			Password,
