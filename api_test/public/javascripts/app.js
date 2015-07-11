@@ -13,10 +13,12 @@ app2.controller('accountCreateController', function($scope, $http){
 
     $http.get('/api/users')
         .success(function(data){
+            debugger;
             $scope.eventData = data;
             console.log(data);
         })
         .error(function(error){
+            debugger;
             console.log(error);
         });
 
