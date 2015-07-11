@@ -1,4 +1,8 @@
+    console.log('here1');
+
     var app = angular.module('events', []);
+
+    console.log("here2");
     
     app.controller('eventController', function($scope, $http){
 
