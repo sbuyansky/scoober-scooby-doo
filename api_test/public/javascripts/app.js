@@ -8,12 +8,11 @@ console.log("here2");
 app2.controller('accountCreateController', function($scope, $http){
 
     $scope.formData ={};
-    $scope.eventData ={};
     $scope.userData = {};
 
     $http.get('/api/users')
         .success(function(data){
-            $scope.eventData = data;
+            $scope.userData = data;
             console.log(data);
         })
         .error(function(error){
@@ -22,12 +21,18 @@ app2.controller('accountCreateController', function($scope, $http){
         });
 
     $scope.createUser = function() {
+        var passCopy = $scope.PassCopy;
+        // do some validation to make sure Password & PassCopy are the same
+
+        debugger;
+
         // user variable is dynamically built by
         //  angular through HTML page [index.html]
         $http.post('/api/users', $scope.user)
             .success(function(data) {
+                $scope.userData = data;
                 debugger;
-                console.log(data);
+                console.log('added ' + data + ' to users table');
             })
             .error(function(error) {
                 debugger

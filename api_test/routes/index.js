@@ -15,21 +15,55 @@ router.get('/api/users', function(req,res){
 	res.send("hi. successful get to /api/users"); // possibly should return object / array of objects w/ user data?
 });
 
+// User table insert code
 router.post('/api/users', function(req, res) {
     var results = [];
-    //var test1 = 0;
-    console.log('post /api/users req.body: ' + req.body);
-	/*with(req.body){
-	    var data = [
+    console.log(req.body); // TODO remove console logging
+	// gather data to post
+	with(req.body){
+        var data = [
+			"myUsername",//Username,
 			Email,
-			Password,
-			"First"
-	    ];
-    }*/
-    res.send(["success! returned... stuff i don't think i can look at"]);
-    //if (test1===0) res.send("returning stuff");
-    //if (test1===2) res.send("returning stuff -> " + data);
-    //if (test1===1) return res.send("data: " + data);
+			false,//0
+			Password,//"hunter2",
+			"abcd",
+			"Bob"/*,//FirstName,
+			LastName,
+			"43.073052",
+			"-89.401230",
+			gender,
+			birthday,
+			aboutMe,
+			skillLevel,
+			phone,
+			position,
+			notifications,
+			lastLogin,
+			security
+			profileOrder*/
+	   ];
+    }
+	
+	// post data to the server
+	pg.connect(connectionString, function(err, client, done) {
+		//client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name, last_name, location_x, location_y, user_gender, birthday, about_me, skill_level, phone_number, position, notifications, last_login, security, profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)", data);
+		client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name) values($1,$2,$3,$4,$5,$6)", data);
+
+		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
+
+		query.on('row', function(row) {
+			results.push(row);
+		});
+
+		query.on('end', function() {
+			client.end();
+			return res.json(results);
+		});
+
+		if(err) {
+		    console.log(err);
+		}
+	});
 });
 
 router.delete('/api/users/:uid', function(req, res) {
