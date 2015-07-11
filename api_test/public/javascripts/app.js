@@ -37,15 +37,6 @@ app2.controller('accountCreateController', function($scope, $http){
             })
 
         debugger;
-        $http.post('/users/api/users', $scope.user)
-            .success(function(data) {
-                debugger;
-                console.log(data);
-            })
-            .error(function(error) {
-                debugger
-                console.log('Error: ' + error);
-            })
     };
     
     $scope.deleteUser = function(uid){

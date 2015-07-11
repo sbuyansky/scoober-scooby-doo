@@ -17,27 +17,12 @@ router.get('/api/users', function(req,res){
 
 router.post('/api/users', function(req, res) {
     var results = [];
-    console.log(req.body);
+    console.log('post /api/users req.body: ' + req.body);
 	with(req.body){
-		debugger;
 	    var data = [
 			Email,
 			Password,
 			"First"
-	    ];
-	    return data;
-    }
-});
-
-// probs won't ever use this... just thought i'd try it for fun
-router.post('/users/api/users', function(req, res) {
-    var results = [];
-    console.log(req.body);
-	with(req.body){
-	    var data = [
-			Email,
-			Password,
-			"Second"
 	    ];
 	    return data;
     }
