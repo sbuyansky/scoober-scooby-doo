@@ -1,3 +1,5 @@
+// MOVING CODE TO APP.JS CONTROLLER FILE!!
+
 console.log('inside users controller');
 
 var app = angular.module('accountCreate', []);
