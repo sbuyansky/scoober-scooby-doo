@@ -9,7 +9,7 @@ app.controller('accountCreateController', function($scope, $http){
     $scope.formData ={};
     $scope.userData = {};
 
-    $http.get('/api/users')
+    $http.get('/users/api/users')
         .success(function(data){
             $scope.userData = data;
             debugger;

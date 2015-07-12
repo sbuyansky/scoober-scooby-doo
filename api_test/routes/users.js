@@ -10,8 +10,27 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
-router.get('/api/users', function(req,res){
-	res.send("hi. did we go here? users.js"); // possibly should return object / array of objects w/ user data?
+router.get('/users/api/users', function(req,res){
+    var results = [];
+
+    console.log('oh snap, now in users.js');
+        
+    pg.connect(connectionString, function(err, client, done) {
+		var query = client.query("SELECT * FROM users2 ORDER BY uid ASC");
+
+	        query.on('row', function(row) {
+	            results.push(row);
+	        });
+
+	        query.on('end', function() {
+	            client.end();
+	            return res.json(results);
+	        });
+
+	        if(err) {
+	          console.log(err);
+		}
+    });
 });
 
 router.post('/api/users', function(req, res) {
