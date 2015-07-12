@@ -1,7 +1,9 @@
+/*App & Controller for event creation html*/
+
 console.log('inside app.js');
 
 var app = angular.module('events', []);
-var app2 = angular.module('accountCreate', []);
+/*var app2 = angular.module('accountCreate', []);
 
 console.log("here2");
 
@@ -56,7 +58,7 @@ app2.controller('accountCreateController', function($scope, $http){
                 console.log('Error: ' + error);
             });
     };
-});
+});*/
 
 app.controller('eventController', function($scope, $http){
 

@@ -1,32 +1,38 @@
-// MOVING CODE TO APP.JS CONTROLLER FILE!!
-
-console.log('inside users controller');
+/*App & Controller for initial_signup html*/
 
 var app = angular.module('accountCreate', []);
+
+console.log("here in users.js");
 
 app.controller('accountCreateController', function($scope, $http){
 
     $scope.formData ={};
-    $scope.eventData ={};
     $scope.userData = {};
 
     $http.get('/api/users')
         .success(function(data){
-            $scope.eventData = data;
+            $scope.userData = data;
+            debugger;
             console.log(data);
         })
         .error(function(error){
+            debugger;
             console.log(error);
         });
 
     $scope.createUser = function() {
+        var passCopy = $scope.user.PassCopy;
+        // do some validation to make sure Password & PassCopy are the same
+
         debugger;
+
         // user variable is dynamically built by
         //  angular through HTML page [index.html]
         $http.post('/api/users', $scope.user)
             .success(function(data) {
+                $scope.userData = data;
                 debugger;
-                console.log(data);
+                console.log('added ' + data + ' to users table');
             })
             .error(function(error) {
                 debugger
@@ -34,15 +40,6 @@ app.controller('accountCreateController', function($scope, $http){
             })
 
         debugger;
-        $http.post('/users/api/users', $scope.user)
-            .success(function(data) {
-                debugger;
-                console.log(data);
-            })
-            .error(function(error) {
-                debugger
-                console.log('Error: ' + error);
-            })
     };
     
     $scope.deleteUser = function(uid){
