@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 console.log("here.. in the main index.js router file");
 
-/* TESTING USERS ROUTES - not sure if this needs to go here or can go in its own file*/
+/* USERS ROUTES - not sure if this needs to go here or can go in its own file*/
 //router.get('/api/users', function(req,res){
 //	res.send("hi. successful get to /api/users"); // possibly should return object / array of objects w/ user data?
 //});
@@ -24,17 +24,17 @@ router.get('/api/users', function(req,res){
     pg.connect(connectionString, function(err, client, done) {
 		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
-	        query.on('row', function(row) {
-	            results.push(row);
-	        });
+        query.on('row', function(row) {
+            results.push(row);
+        });
 
-	        query.on('end', function() {
-	            client.end();
-	            return res.json(results);
-	        });
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
 
-	        if(err) {
-	          console.log(err);
+        if(err) {
+            console.log(err);
 		}
     });
 });
@@ -96,7 +96,7 @@ router.delete('/api/users/:uid', function(req, res) {
 	res.send("success?");
 });
 
-// events routes
+/* events routes */
 router.get('/api/events', function(req,res){
     var results = [];
         

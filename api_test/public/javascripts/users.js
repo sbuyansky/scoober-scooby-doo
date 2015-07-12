@@ -2,14 +2,12 @@
 
 var app = angular.module('accountCreate', []);
 
-console.log("here in users.js");
-
 app.controller('accountCreateController', function($scope, $http){
 
     $scope.formData ={};
     $scope.userData = {};
 
-    $http.get('/users/api/users')
+    $http.get('/api/users')
         .success(function(data){
             $scope.userData = data;
             debugger;
@@ -23,8 +21,6 @@ app.controller('accountCreateController', function($scope, $http){
     $scope.createUser = function() {
         var passCopy = $scope.user.PassCopy;
         // do some validation to make sure Password & PassCopy are the same
-
-        debugger;
 
         // user variable is dynamically built by
         //  angular through HTML page [index.html]

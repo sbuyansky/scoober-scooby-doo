@@ -6,7 +6,6 @@ var router = express.Router();
 console.log("inside users.js route");
 
 router.get('/', function(req, res, next) {
-    debugger;
     res.send('respond with a resource');
 });
 
