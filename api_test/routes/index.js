@@ -9,11 +9,20 @@ router.get('/', function(req, res, next) {
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
 
-router.get('/api/events', function(req,res){
+console.log("here.. in the main index.js router file");
+
+/* USERS ROUTES - not sure if this needs to go here or can go in its own file*/
+//router.get('/api/users', function(req,res){
+//	res.send("hi. successful get to /api/users"); // possibly should return object / array of objects w/ user data?
+//});
+
+router.get('/api/users', function(req,res){
     var results = [];
+
+    console.log('oh snap, still in index.js');
         
     pg.connect(connectionString, function(err, client, done) {
-	var query = client.query("SELECT * FROM events ORDER BY eid ASC");
+		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
         query.on('row', function(row) {
             results.push(row);
@@ -25,8 +34,87 @@ router.get('/api/events', function(req,res){
         });
 
         if(err) {
-          console.log(err);
-	}
+            console.log(err);
+		}
+    });
+});
+
+// User table insert code
+router.post('/api/users', function(req, res) {
+    var results = [];
+    console.log(req.body); // TODO remove console logging
+	// gather data to post
+	with(req.body){
+        var data = [
+			"myUsername",//Username,
+			Email,
+			false,//0
+			Password,//"hunter2",
+			"abcd",
+			"Bob"/*,//FirstName,
+			LastName,
+			"43.073052",
+			"-89.401230",
+			gender,
+			birthday,
+			aboutMe,
+			skillLevel,
+			phone,
+			position,
+			notifications,
+			lastLogin,
+			security
+			profileOrder*/
+	   ];
+    }
+	
+	// post data to the server
+	pg.connect(connectionString, function(err, client, done) {
+		//client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name, last_name, location_x, location_y, user_gender, birthday, about_me, skill_level, phone_number, position, notifications, last_login, security, profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)", data);
+		client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name) values($1,$2,$3,$4,$5,$6)", data);
+
+		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
+
+		query.on('row', function(row) {
+			results.push(row);
+		});
+
+		query.on('end', function() {
+			client.end();
+			return res.json(results);
+		});
+
+		if(err) {
+		    console.log(err);
+		}
+	});
+});
+
+router.delete('/api/users/:uid', function(req, res) {
+	console.log("delete user");
+	debugger;
+	res.send("success?");
+});
+
+/* events routes */
+router.get('/api/events', function(req,res){
+    var results = [];
+        
+    pg.connect(connectionString, function(err, client, done) {
+		var query = client.query("SELECT * FROM events ORDER BY eid ASC");
+
+	        query.on('row', function(row) {
+	            results.push(row);
+	        });
+
+	        query.on('end', function() {
+	            client.end();
+	            return res.json(results);
+	        });
+
+	        if(err) {
+	          console.log(err);
+		}
     });
 });
 
@@ -159,9 +247,7 @@ router.delete('/api/events/:eid', function(req, res) {
         if(err) {
           console.log(err);
         }
-
     });
-
 });
 
 module.exports = router;
