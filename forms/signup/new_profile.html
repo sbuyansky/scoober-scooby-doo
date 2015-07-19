@@ -4,8 +4,8 @@
     <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../styles/new_profile.css">
 </head>
-<body>
-	<div id="page">before
+<body ng-app="events" ng-controller="eventController">
+	<div id="page">
 	    <div id="popup" ng-app="myApp" ng-controller="formCtrl">
 	    	<div id="welcome_div">
 		    	<h3 id="welcome_text">Explain Thyself</h3>
@@ -32,17 +32,17 @@
 					                </tr>
 					                <tr>
 					                    <td>Username</td>
-					                    <td><input type="text" ng-model="user.Username" required></td>
+					                    <td><input type="text" ng-model="user.username" required></td>
 					                </tr>
 					                <tr>
 					                    <td>Name</td>
-					                    <td><input type="text" ng-model="user.FirstName" placeholder="First" required></td>
-					                    <td><input type="text" ng-model="user.LastName" placeholder="Last" required></td>
+					                    <td><input type="text" ng-model="user.firstName" placeholder="First" required></td>
+					                    <td><input type="text" ng-model="user.lastName" placeholder="Last" required></td>
 					                </tr>
 					                <tr>
 					                    <td>Gender</td>
 					                    <td>
-					                        <select ng-model="user.Gender">
+					                        <select ng-model="user.gender">
 					                            <option value=""></option>
 					                            <option value="male">Male</option>
 					                            <option value="female">Female</option>
@@ -51,13 +51,13 @@
 					                </tr>
 					                <tr>
 					                    <td>Phone number</td>
-					                    <td><input type="tel" ng-model="user.Phone"></td>
+					                    <td><input type="tel" ng-model="user.phone"></td>
 					                </tr>
 					                <tr>
 					                    <td>Location</td>
-					                    <td><input type="text" ng-model="user.City" placeholder="City"></td>
+					                    <td><input type="text" ng-model="user.city" placeholder="City"></td>
 					                    <td>
-					                        <select ng-model="user.State">
+					                        <select ng-model="user.state">
 					                            <option value="" selected="selected">Choose a State</option>
 					                            <option value="AL">AL</option> 
 					                        </select>
@@ -68,13 +68,13 @@
 			        		<div id="profile_pic">
 					            <!--TODO file is currently broken -->
 					            <!--TODO perhaps use an existing library for this?-->
-					            <input type="url" ng-model="user.ProfilePicURL" placeholder="URL"> or <input type="file" ng-model="user.ProfilePicPath"></td>
+					            <input type="url" ng-model="user.profilePicURL" placeholder="URL"> or <input type="file" ng-model="user.ProfilePicPath"></td>
 					            <button ng-click="upload()">Upload</button>
 			        		</div>
 			        		<div id="about_me">
 			        			<p>About Me
 					                <br>
-					                <textarea rows="4" cols="50" ng-model="user.AboutMe" placeholder="Whammo?"></textarea>
+					                <textarea rows="4" cols="50" ng-model="user.aboutMe" placeholder="Whammo?"></textarea>
 					            </p>
 			        		</div>
 				        </div>
@@ -86,7 +86,6 @@
 	        	</form>
 	        </div>
 	    </div>
-		after
 	</div>
 	<p>Data to send = {{user}}</p>
     <script>
