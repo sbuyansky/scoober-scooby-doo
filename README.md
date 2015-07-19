@@ -1,3 +1,5 @@
 # scoober-scooby-doo
 
-<image src="https://scontent-ord1-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11535809_10206688558913144_5676294641301868645_n.jpg?oh=6b8278cc1830272659021a77acb4ff93&oe=55FDA68D" width="300px"/>
+We should name our app/site some time...
+
+And this is my passive-agressive way of noting it.

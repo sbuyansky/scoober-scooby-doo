@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 <head>
     <!-- Metadata -->
     <meta charset="utf-8">
@@ -15,19 +16,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     
-    <script src="javascripts/users.js"></script>
+    <script src="javascripts/app.js"></script>
 </head>
 
-<body ng-app="accountCreate" ng-controller="accountCreateController">
+<body>
 	<p>Signup:</p>
-	<div>
+
+	<div ng-app="myApp" ng-controller="formCtrl">
 		<form novalidate>
 			<table>
 				<tr>
-                    <!--using type email, have to include @ and . to have data store-->
-					<td><input type="text" ng-model="user.Email" placeholder="<Email Address>"></td>
+					<td><input type="email" ng-model="user.Email" placeholder="<Email Address>"></td>
 					<td><input type="password" ng-model="user.Password" placeholder="<Password>"></td>
-					<td><button ng-click="createUser()">Submitt</button></td>
+					<td><button ng-click="submit()">Submit</button></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -37,20 +38,16 @@
 			</table>
 			<br>
 		</form>
-        <table class="table table-striped table-hover" >
-            <thead><tr>
-                <th>uid</th>
-                <th>Email</th>
-                <th>Password</th>
-            </tr></thead>
-            <tr ng-repeat="userIter in userData">
-                <td>{{userIter.uid}} </td> 
-                <td>{{userIter.email}} </td>
-                <td>{{userIter.password}} </td>
-                <td><button ng-click="deleteUser(userIter.uid)" class="glyphicon glyphicon-remove"/></td>
-            </tr>
-        </table>
 		<p>Data to send = {{user}}</p>
 	</div>
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('formCtrl', function($scope) {
+			$scope.submit = function() {
+			  console.log($scope);
+			};
+		});
+	</script>
 </body>
 </html>
