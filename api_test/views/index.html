@@ -24,8 +24,8 @@
         <hr>
         <div>
           <form novalidate>
-         Name <input type="text" ng-model="event.name"/>  <br/>
-         Sport <select ng-model="event.sport" ng-options="cat for cat in sportVals"/> </select>  <br/>
+         <span class="col-md-1 text-right"> Name </span> <input type="text" ng-model="event.name"/>  <br/>
+         <span class="col-md-1 text-right"> Sport</span> <select ng-model="event.sport" ng-options="cat for cat in sportVals"/> </select>  <br/>
          Security <select ng-model="event.security" ng-options="cat for cat in securityVals"/></select>  <br/>
          Start Time: <input type="text" ng-model="event.start_time" id="time_start"/>  <br/>
          End Time: <input type="text" ng-model="event.end_time" id="time_end"/>  <br/>
