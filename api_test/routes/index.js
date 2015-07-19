@@ -4,23 +4,14 @@ var pg = require('pg');
 var path= require('path');
 var connectionString = process.env.DATABASE_URL || 'postgres://sbuyansky:test_password@localhost:5432/scoober';
 
-/* GET home page. */
+/* Serve the index homepage */ 
 router.get('/', function(req, res, next) {
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
 
-console.log("here.. in the main index.js router file");
-
-/* USERS ROUTES - not sure if this needs to go here or can go in its own file*/
-//router.get('/api/users', function(req,res){
-//	res.send("hi. successful get to /api/users"); // possibly should return object / array of objects w/ user data?
-//});
-
 router.get('/api/users', function(req,res){
     var results = [];
 
-    console.log('oh snap, still in index.js');
-        
     pg.connect(connectionString, function(err, client, done) {
 		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
