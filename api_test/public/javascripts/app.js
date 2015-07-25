@@ -1,12 +1,16 @@
 /*App & Controller for event creation html*/
 
+//events angular application
 var app = angular.module('events', []);
 
+//event controller
 app.controller('eventController', function($scope, $http){
-
+    
+    //initialize array vars
     $scope.formData ={};
     $scope.eventData ={};
-
+    
+    //
     $http.get('/api/events')
         .success(function(data){
             $scope.eventData = data;
