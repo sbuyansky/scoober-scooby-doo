@@ -2,38 +2,72 @@
     <h3>Create an event!</h3>
     <hr>
     <div>
-        <form novalidate>
-    Name <input type="text" ng-model="event.name"/>  <br/>
-    Sport <select ng-model="event.sport" ng-options="cat for cat in sportVals"/> </select>  <br/>
-    Security <select ng-model="event.security" ng-options="cat for cat in securityVals"/></select>  <br/>
-    Start Time: <input type="text" ng-model="event.start_time" id="time_start"/>  <br/>
-    End Time: <input type="text" ng-model="event.end_time" id="time_end"/>  <br/>
-    <!--location_x       | numeric(9,6)                | not null -->
-    <!--location_y       | numeric(9,6)                | not null -->
-    Location Name <input type="text" ng-model="event.loc.name"/>  <br/>
-    Location Description <textarea ng-model="event.loc.description"> </textarea>  <br/>
-    Event Type <select ng-model="event.type" ng-options="cat for cat in event_typeVals"></select>  <br/>
-    Gendered <select ng-model="event.gendered" ng-options="cat for cat in event_genderedVals"/></select>  <br/>
-    Gender Ratio <input type="text" ng-model="event.gender_ratio"/>  <br/>
-    <!-- skill_level_min  | integer                     | -->
-    <!-- skill_level_max  | integer                     | -->
-    Event Details <textarea ng-model="event.details"> </textarea>  <br/>
-    Event Status <select ng-model="event.stat" ng-options="cat for cat in event_statusVals"/></select>  <br/>
-    <!-- min_players      | integer                     | -->
-    <!-- max_players      | integer                     | -->
-    <!-- master_eid       | integer                     | -->
-    <!-- is_master        | boolean                     | not null default false -->
-    <!-- field_picture    | character varying(100)      | -->
-    <!-- Team 1 <select ng-model="event.team1" /> </select>  <br/>-->
-    <!-- Team 2 <select ng-model="event.team2" /></select>  <br/>-->
-    <!-- score_t1         | integer                     | -->
-    <!-- score_t2         | integer                     | -->
-    <button ng-click="createEvent()">Submit</button>
-        </form>
-    
-    <button ng-click="redirectMe()">Redirectt</button>
-    <p>Data to send = {{event}}</p>
+    <form novalidate role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="name"> Name</label> 
+            <div class="col-md-3"><input class="form-control" id="name" type="text" ng-model="event.name"/></div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="security"> Security</label> 
+            <div class="col-md-2"><select class="form-control" id="security" ng-model="event.security" ng-options="cat for cat in securityVals"/></select></div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="sport">Sport</label> 
+            <div class="col-md-2"><select class="form-control" id="sport" ng-model="event.sport" ng-options="cat for cat in sportVals"/> </select></div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="start_time"> Start Time</label> 
+            <div class="col-md-1"><input class="form-control" id="start_time" type="text" ng-model="event.start_time" id="time_start"/></div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="end_time">End Time:</label> 
+            <div class="col-md-1"><input class="form-control" id="end_time" type="text" ng-model="event.end_time" id="time_end"/></div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="loc_name">Location Name</label> 
+            <div class="col-md-3"><input class="form-control" id="loc_name" type="text" ng-model="event.loc.name"/> </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="loc_description">Location Description</label> 
+            <div class="col-md-4"><textarea class="form-control" id="loc_description" ng-model="event.loc.description"> </textarea>  </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="event_type">Event Type</label> 
+            <div class="col-md-2"><select class="form-control" id="event_type" ng-model="event.type" ng-options="cat for cat in event_typeVals"></select></div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="gendered">Gendered</label> 
+            <div class="col-md-2"><select class="form-control" id="gendered" ng-model="event.gendered" ng-options="cat for cat in event_genderedVals"/></select> </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="gender_ratio">Gender Ratio</label> 
+            <div class="col-md-2"><input class="form-control" id="gender_ratio" type="text" ng-model="event.gender_ratio"/>  </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="event_details">Event Details</label> 
+            <div class="col-md-4"><textarea class="form-control" id="event_details" ng-model="event.details" rows=4> </textarea> </div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="event_status">Event Status</label> 
+            <div class="col-md-2"><select class="form-control" id="event_status" ng-model="event.stat" ng-options="cat for cat in event_statusVals"/></select></div> 
+        </div>
+        <!--location_x       | numeric(9,6)                | not null -->
+        <!--location_y       | numeric(9,6)                | not null -->
+        <!-- skill_level_min  | integer                     | -->
+        <!-- skill_level_max  | integer                     | -->
+        <!-- min_players      | integer                     | -->
+        <!-- max_players      | integer                     | -->
+        <!-- master_eid       | integer                     | -->
+        <!-- is_master        | boolean                     | not null default false -->
+        <!-- field_picture    | character varying(100)      | -->
+        <!-- Team 1 <select ng-model="event.team1" /> </select>  <br/>-->
+        <!-- Team 2 <select ng-model="event.team2" /></select>  <br/>-->
+        <!-- score_t1         | integer                     | -->
+        <!-- score_t2         | integer                     | -->
+        <div class="col-md-5"><button type="submit" class="btn btn-primary pull-right" ng-click="createEvent()">Submit</button></div>
+    </form>
     </div>
+    <p>Data to send = {{event}}</p>
     <table class="table table-striped table-hover" >
         <thead><tr>
             <th>eid</th>
