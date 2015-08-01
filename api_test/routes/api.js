@@ -169,6 +169,31 @@ router.delete('/events/:eid', function(req, res) {
     });
 });
 
+router.get('/events/:eid', function(req, res) {
+
+    var results = [];
+
+    var id = req.params.eid;
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        var query = client.query("SELECT * FROM events WHERE eid=($1)", [id]);
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {
+          console.log(err);
+        }
+    });
+});
+
 /*
 //
 //  Users

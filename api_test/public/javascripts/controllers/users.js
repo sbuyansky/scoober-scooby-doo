@@ -1,8 +1,6 @@
 /*App & Controller for initial_signup html*/
 
-var app = angular.module('accountCreate', []);
-
-app.controller('accountCreateController', function($scope, $http){
+angular.module('scoober').controller('accountCreateController', function($scope, $http){
 
     $scope.formData ={};
     $scope.userData = {};
@@ -10,11 +8,9 @@ app.controller('accountCreateController', function($scope, $http){
     $http.get('/api/users')
         .success(function(data){
             $scope.userData = data;
-            debugger;
             console.log(data);
         })
         .error(function(error){
-            debugger;
             console.log(error);
         });
 
@@ -27,27 +23,21 @@ app.controller('accountCreateController', function($scope, $http){
         $http.post('/api/users', $scope.user)
             .success(function(data) {
                 $scope.userData = data;
-                debugger;
                 console.log('added ' + data + ' to users table');
             })
             .error(function(error) {
-                debugger
                 console.log('Error: ' + error);
             })
 
-        debugger;
     };
     
     $scope.deleteUser = function(uid){
-        debugger;
         $http.delete('/api/users/' + uid)
             .success(function(data) {
-                debugger;
                 $scope.userData = data;
                 console.log(data);
             })
             .error(function(error) {
-                debugger
                 console.log('Error: ' + error);
             });
     };

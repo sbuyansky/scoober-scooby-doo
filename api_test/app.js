@@ -13,6 +13,8 @@ var routes = require('./routes/index');
 
 var api = require('./routes/api');
 
+var templates = require('./routes/templates');
+
 var app = express();
 
 // view engine setup
@@ -28,8 +30,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
 app.use('/api', api);
+app.use('/views', templates);
+app.use('*',routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
