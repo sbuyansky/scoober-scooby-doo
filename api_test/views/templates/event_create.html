@@ -78,7 +78,7 @@
             <td>{{eventIter.eid}} </td> 
             <td>{{eventIter.name}} </td>
             <td>{{eventIter.event_security}} </td>
-            <td><button ng-click="deleteEvent(eiventIter.eid)" class="glyphicon glyphicon-remove"/></td>
+            <td><button ng-click="deleteEvent(eventIter.eid, $event)" class="glyphicon glyphicon-remove"/></td>
         </a>
         </tr>
     </table>

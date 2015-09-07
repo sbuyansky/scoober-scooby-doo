@@ -59,7 +59,7 @@ router.get('/category/:category', function(req,res){
     });
 });
 
-router.post('/api/events', function(req, res) {
+router.post('/events', function(req, res) {
         var results = [];
         console.log(req.body);
 	with(req.body){
@@ -147,7 +147,7 @@ router.delete('/events/:eid', function(req, res) {
     var results = [];
 
     var id = req.params.eid;
-
+    
     pg.connect(connectionString, function(err, client, done) {
 
         client.query("DELETE FROM events WHERE eid=($1)", [id]);

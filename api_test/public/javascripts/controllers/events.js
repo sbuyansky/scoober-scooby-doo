@@ -26,7 +26,7 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
             });
         };
         
-        $scope.deleteEvent = function(eid){
+        $scope.deleteEvent = function(eid, eventPtr){
             $http.delete('/api/events/' + eid)
                 .success(function(data) {
                     $scope.eventsData = data;
@@ -34,6 +34,7 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
                 .error(function(error) {
                     console.log('Error: ' + error);
                 });
+            eventPtr.stopPropagation();
         };
 
         $scope.getEvent = function(eid){
