@@ -31,7 +31,7 @@ angular.module('scoober').controller('accountCreateController', function($scope,
 
     };
     
-    $scope.deleteUser = function(uid){
+    $scope.deleteUser = function(uid, userPtr){
         $http.delete('/api/users/' + uid)
             .success(function(data) {
                 $scope.userData = data;
@@ -40,5 +40,6 @@ angular.module('scoober').controller('accountCreateController', function($scope,
             .error(function(error) {
                 console.log('Error: ' + error);
             });
+        userPtr.stopPropagation();
     };
 });

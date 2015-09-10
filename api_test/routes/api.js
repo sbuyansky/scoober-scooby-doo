@@ -251,9 +251,28 @@ router.post('/users', function(req, res) {
 });
 
 router.delete('/users/:uid', function(req, res) {
-	console.log("delete user");
-	debugger;
-	res.send("success?");
+    var results = [];
+    var id = req.params.uid;
+    
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query("DELETE FROM users WHERE uid=($1)", [id]);
+
+        var query = client.query("SELECT * FROM users ORDER BY uid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {
+          console.log(err);
+        }
+    });
 });
 
 module.exports = router;
