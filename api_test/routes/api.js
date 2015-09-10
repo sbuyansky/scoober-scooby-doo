@@ -228,9 +228,9 @@ router.post('/users', function(req, res) {
 	with(req.body){
         var data = [
 			"myUsername",//Username,
-			Email,
+			email,
 			false,//0
-			Password,//"hunter2",
+			password,//"hunter2",
 			"abcd",
 			"Bob"/*,//FirstName,
 			LastName,
