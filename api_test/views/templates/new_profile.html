@@ -1,0 +1,71 @@
+<div>
+	<h3>Explain Thyself</h3>
+	<hr>
+    <form novalidate>
+    <!--Basic information-->
+    	<div>
+    		<table>
+    			<tr><td>Basic Info</td></tr>
+    			<tr><td>Profile Pic</td></tr>
+    			<tr><td>About Me</td></tr>
+    		</table>
+    		<div>
+    			<table>
+	                <tr>
+	                <!--TODO pull email from database -->
+	                    <td>Email</td>
+	                    <td>TODO PUT AN EMAIL HERE</td>
+	                </tr>
+	                <tr>
+	                    <td>Username</td>
+	                    <td><input type="text" ng-model="user.username" required></td>
+	                </tr>
+	                <tr>
+	                    <td>Name</td>
+	                    <td><input type="text" ng-model="user.firstName" placeholder="First" required></td>
+	                    <td><input type="text" ng-model="user.lastName" placeholder="Last" required></td>
+	                </tr>
+	                <tr>
+	                    <td>Gender</td>
+	                    <td>
+	                        <select ng-model="user.gender">
+	                            <option value=""></option>
+	                            <option value="male">Male</option>
+	                            <option value="female">Female</option>
+	                        </select>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>Phone number</td>
+	                    <td><input type="tel" ng-model="user.phone"></td>
+	                </tr>
+	                <tr>
+	                    <td>Location</td>
+	                    <td><input type="text" ng-model="user.city" placeholder="City"></td>
+	                    <td>
+	                        <select ng-model="user.state">
+	                            <option value="" selected="selected">Choose a State</option>
+	                            <option value="AL">AL</option> 
+	                        </select>
+	                    </td>
+	                </tr>
+	            </table>
+    		</div>
+    		<div>
+    			<p>About Me
+	                <br>
+	                <textarea rows="4" cols="50" ng-model="user.aboutMe" placeholder="Whammo?"></textarea>
+	            </p>
+    		</div>
+    	</div>
+    	<hr>
+        <div>
+        	<button ng-click="submit()">Submit</button>
+        </div>
+	</form>
+	<div>
+		<p>Data to send = {{user}}</p>
+	</div>
+</div>
+
+
