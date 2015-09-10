@@ -270,7 +270,7 @@ router.post('/users', function(req, res) {
         }
     console.log(data);
 	pg.connect(connectionString, function(err, client, done) {
-		client.query("INSERT INTO users(username,email,email_verified,password,salt,first_name,last_name,location_x,location_y,user_gender,birthday,about_me,skill_level,phone_number,position,notifications,last_login,security,profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)", data);
+		client.query("INSERT INTO users(username,email,email_verified,password,salt,first_name,last_name,location_x,location_y,user_gender,birthday,about_me,skill_level,phone_number,position,notifications,last_login,security,profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)",data);
 
 		var query = client.query("SELECT * FROM users ORDER BY uid ASC"); //TODO not select all find way to only add new user to existing table
 
@@ -286,7 +286,7 @@ router.post('/users', function(req, res) {
 		if(err) {
 		  console.log(err);
 		}
-	}
+	});
 });
 
 router.delete('/users/:uid', function(req, res) {
