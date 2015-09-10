@@ -4,9 +4,6 @@ angular.module('scoober').controller('accountCreateController', function($scope,
 
     $scope.userData = {};
 
-    console.log("right before debugger");
-    debugger;
-
     $http.get('/api/users')
         .success(function(data){
             $scope.userData = data;
@@ -30,7 +27,6 @@ angular.module('scoober').controller('accountCreateController', function($scope,
             .error(function(error) {
                 console.log('Error: ' + error);
             })
-
     };
     
     $scope.deleteUser = function(uid, userPtr){
