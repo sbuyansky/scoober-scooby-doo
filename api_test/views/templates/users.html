@@ -4,13 +4,13 @@
                 <table>
                         <tr>
             using type email, have to include @ and . to have data store
-                                <td><input type="text" ng-model="user.Email" placeholder="<Email Address>"></td>
-                                <td><input type="password" ng-model="user.Password" placeholder="<Password>"></td>
+                                <td><input type="text" ng-model="user.email" placeholder="<Email Address>"></td>
+                                <td><input type="password" ng-model="user.password" placeholder="<Password>"></td>
                                 <td><button ng-click="createUser()">Submitt</button></td>
                         </tr>
                         <tr>
                                 <td></td>
-                                <td><input type="password" ng-model="user.PassCopy" placeholder="<Password Again>"></td>
+                                <td><input type="password" ng-model="user.pass_copy" placeholder="<Password Again>"></td>
                                 <td></td>
                         </tr>
                 </table>
@@ -26,7 +26,7 @@
         <td>{{userIter.uid}} </td> 
         <td>{{userIter.email}} </td>
         <td>{{userIter.password}} </td>
-        <td><button ng-click="deleteUser(userIter.uid)" class="glyphicon glyphicon-remove"/></td>
+        <td><button ng-click="deleteUser(userIter.uid, $event)" class="glyphicon glyphicon-remove"/></td>
     </tr>
 </table>
         <p>Data to send = {{user}}</p>

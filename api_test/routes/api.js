@@ -204,7 +204,7 @@ router.get('/users', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function(err, client, done) {
-		var query = client.query("SELECT * FROM users2 ORDER BY uid ASC");
+		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
 	        query.on('row', function(row) {
 	            results.push(row);
@@ -223,37 +223,77 @@ router.get('/users', function(req,res){
 
 router.post('/users', function(req, res) {
     var results = [];
-    console.log(req.body);
-	/*with(req.body){
-	    var data = [
-			Email,
-			Password,
-			"First"
-	    ];
-	    return data;
-    }*/
-    res.send('hello there');
-});
+    console.log(req.body); // TODO remove console logging
+	// gather data to post
+	with(req.body){
+        var data = [
+			"myUsername",//Username,
+			email,
+			false,//0
+			password,//"hunter2",
+			"abcd",
+			"Bob"/*,//FirstName,
+			LastName,
+			"43.073052",
+			"-89.401230",
+			gender,
+			birthday,
+			aboutMe,
+			skillLevel,
+			phone,
+			position,
+			notifications,
+			lastLogin,
+			security
+			profileOrder*/
+	   ];
+    }
+	
+	// post data to the server
+	pg.connect(connectionString, function(err, client, done) {
+		//client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name, last_name, location_x, location_y, user_gender, birthday, about_me, skill_level, phone_number, position, notifications, last_login, security, profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)", data);
+		client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name) values($1,$2,$3,$4,$5,$6)", data);
 
-// probs won't ever use this... just thought i'd try it for fun
-router.post('/users', function(req, res) {
-    var results = [];
-    console.log(req.body);
-	/*with(req.body){
-	    var data = [
-			Email,
-			Password,
-			"First"
-	    ];
-	    return data;
-    }*/
-    res.send('hello there2');
+		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
+
+		query.on('row', function(row) {
+			results.push(row);
+		});
+
+		query.on('end', function() {
+			client.end();
+			return res.json(results);
+		});
+
+		if(err) {
+		    console.log(err);
+		}
+	});
 });
 
 router.delete('/users/:uid', function(req, res) {
-	console.log("delete user");
-	debugger;
-	res.send("success?");
+    var results = [];
+    var id = req.params.uid;
+    
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query("DELETE FROM users WHERE uid=($1)", [id]);
+
+        var query = client.query("SELECT * FROM users ORDER BY uid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {
+          console.log(err);
+        }
+    });
 });
 
 module.exports = router;
