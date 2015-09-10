@@ -223,43 +223,38 @@ router.get('/users', function(req,res){
 
 router.post('/users', function(req, res) {
     var results = [];
-    console.log(req.body);
+    console.log(req.body); // TODO remove console logging
+	// gather data to post
 	with(req.body){
-	    /*var data = [
-			username,
-			email,
-			email_verified,
-			password,
-			salt,
-			first_name,
-			last_name,
-			location_x,
-			location_y,
-			user_gender,
+        var data = [
+			"myUsername",//Username,
+			Email,
+			false,//0
+			Password,//"hunter2",
+			"abcd",
+			"Bob"/*,//FirstName,
+			LastName,
+			"43.073052",
+			"-89.401230",
+			gender,
 			birthday,
-			about_me,
-			skill_level,
-			phone_number,
+			aboutMe,
+			skillLevel,
+			phone,
 			position,
 			notifications,
-			last_login,
-			security,
-			profile_order
-	       ];*/
-	    var data = [
-			"FILLER_USERNAME",
-			email,
-			false,
-			password,
-			"SO_SALTY",
-			"FIRSTNAME"
-	       ];
-        }
-    console.log(data);
+			lastLogin,
+			security
+			profileOrder*/
+	   ];
+    }
+	
+	// post data to the server
 	pg.connect(connectionString, function(err, client, done) {
-		client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name, last_name, location_x, location_y, user_gender, birthday, about_me, skill_level, phone_number, position, notifications, last_login, security, profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)", data);
+		//client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name, last_name, location_x, location_y, user_gender, birthday, about_me, skill_level, phone_number, position, notifications, last_login, security, profile_order) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)", data);
+		client.query("INSERT INTO users(username, email, email_verified, password, salt, first_name) values($1,$2,$3,$4,$5,$6)", data);
 
-		var query = client.query("SELECT * FROM users ORDER BY uid ASC"); //TODO not select all find way to only add new user to existing table
+		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
 		query.on('row', function(row) {
 			results.push(row);
@@ -271,7 +266,7 @@ router.post('/users', function(req, res) {
 		});
 
 		if(err) {
-		  console.log(err);
+		    console.log(err);
 		}
 	});
 });
