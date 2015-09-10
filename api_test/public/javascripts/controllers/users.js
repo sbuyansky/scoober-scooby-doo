@@ -5,6 +5,9 @@ angular.module('scoober').controller('accountCreateController', function($scope,
     $scope.formData ={};
     $scope.userData = {};
 
+    console.log("right before debugger");
+    debugger;
+
     $http.get('/api/users')
         .success(function(data){
             $scope.userData = data;
