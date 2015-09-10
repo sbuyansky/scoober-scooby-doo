@@ -2,7 +2,6 @@
 
 angular.module('scoober').controller('accountCreateController', function($scope, $http){
 
-    $scope.formData ={};
     $scope.userData = {};
 
     console.log("right before debugger");
@@ -18,8 +17,8 @@ angular.module('scoober').controller('accountCreateController', function($scope,
         });
 
     $scope.createUser = function() {
-        var passCopy = $scope.user.PassCopy;
-        // do some validation to make sure Password & PassCopy are the same
+        var passCopy = $scope.user.pass_copy;
+        // do some validation to make sure password & passCopy are the same
 
         // user variable is dynamically built by
         //  angular through HTML page [index.html]
