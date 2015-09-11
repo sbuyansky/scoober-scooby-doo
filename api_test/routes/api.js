@@ -23,17 +23,17 @@ router.get('/events', function(req,res){
     pg.connect(connectionString, function(err, client, done) {
 		var query = client.query("SELECT * FROM events ORDER BY eid ASC");
 
-	        query.on('row', function(row) {
-	            results.push(row);
-	        });
+        query.on('row', function(row) {
+            results.push(row);
+        });
 
-	        query.on('end', function() {
-	            client.end();
-	            return res.json(results);
-	        });
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
 
-	        if(err) {
-	          console.log(err);
+        if(err) {
+            console.log(err);
 		}
     });
 });
@@ -54,8 +54,8 @@ router.get('/category/:category', function(req,res){
         });
 
         if(err) {
-          console.log(err);
-	}
+            console.log(err);
+		}
     });
 });
 
@@ -136,7 +136,7 @@ router.post('/events', function(req, res) {
         });
 
         if(err) {
-          console.log(err);
+            console.log(err);
         }
 
     });
@@ -164,7 +164,7 @@ router.delete('/events/:eid', function(req, res) {
         });
 
         if(err) {
-          console.log(err);
+            console.log(err);
         }
     });
 });
@@ -188,7 +188,7 @@ router.get('/events/:eid', function(req, res) {
         });
 
         if(err) {
-          console.log(err);
+            console.log(err);
         }
     });
 });
