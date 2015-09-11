@@ -172,7 +172,6 @@ router.delete('/events/:eid', function(req, res) {
 router.get('/events/:eid', function(req, res) {
 
     var results = [];
-
     var id = req.params.eid;
 
     pg.connect(connectionString, function(err, client, done) {

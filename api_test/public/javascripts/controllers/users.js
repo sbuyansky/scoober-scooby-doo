@@ -1,6 +1,6 @@
 /*App & Controller for initial_signup html*/
 
-angular.module('scoober').controller('accountCreateController', function($scope, $http, $userParams, $location){
+angular.module('scoober').controller('accountCreateController', function($scope, $http, $routeParams, $location){
 
     $scope.userData = {};
 
@@ -13,6 +13,10 @@ angular.module('scoober').controller('accountCreateController', function($scope,
         .error(function(error){
             console.log(error);
         });
+
+    $scope.addDemographics = function() {
+        $location.path('/newprofile');
+    }
 
     $scope.createUser = function() {
         var passCopy = $scope.user.pass_copy;
@@ -32,10 +36,6 @@ angular.module('scoober').controller('accountCreateController', function($scope,
                 console.log('Error: ' + error);
             })
     };
-
-    $scope.addDemographics = function() {
-        $location.path('/newprofile');
-    }
     
     $scope.deleteUser = function(uid, userPtr){
         $http.delete('/api/users/' + uid)

@@ -79,5 +79,5 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
         }
     }
 
-    init();        
+    init();
 });
