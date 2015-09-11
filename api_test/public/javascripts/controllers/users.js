@@ -26,11 +26,13 @@ angular.module('scoober').controller('accountCreateController', function($scope,
         //  angular through HTML page [index.html]
         $http.post('/api/users', $scope.user)
             .success(function(data) {
+                // TODO: instead of overwriting all userData, get api to return 1 row.
+                //   then push this row onto the $scope.userData array.
                 $scope.userData = data;
-                console.log('added ',data,$.scope.userData,' to users table');
+                console.log('added ',data,' to users table');
                 // serve up new_profile page to give user the chance to fill in demographics
                 //$location.path('/newprofile');///' + eid);
-                $scope.addDemographics($scope.userData.uid);
+                $scope.addDemographics(data[data.length-1].uid);
             })
             .error(function(error) {
                 console.log('Error: ' + error);

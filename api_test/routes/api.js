@@ -255,6 +255,8 @@ router.post('/users', function(req, res) {
 
 		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
+		// TODO: instead of returning all data, try to return just 1 user.
+		//   continuation = changing code in user.js
 		query.on('row', function(row) {
 			results.push(row);
 		});
