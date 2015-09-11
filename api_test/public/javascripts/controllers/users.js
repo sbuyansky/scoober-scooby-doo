@@ -27,7 +27,7 @@ angular.module('scoober').controller('accountCreateController', function($scope,
         $http.post('/api/users', $scope.user)
             .success(function(data) {
                 $scope.userData = data;
-                console.log('added ',data,' to users table');
+                console.log('added ',data,$.scope.userData,' to users table');
                 // serve up new_profile page to give user the chance to fill in demographics
                 //$location.path('/newprofile');///' + eid);
                 $scope.addDemographics($scope.userData.uid);
