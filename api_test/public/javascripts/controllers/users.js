@@ -34,7 +34,7 @@ angular.module('scoober').controller('accountCreateController', function($scope,
     };
 
     $scope.addDemographics = function() {
-        $location.path('/newprofile'):
+        $location.path('/newprofile');
     }
     
     $scope.deleteUser = function(uid, userPtr){
