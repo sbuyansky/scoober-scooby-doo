@@ -295,5 +295,29 @@ router.delete('/users/:uid', function(req, res) {
     });
 });
 
+router.get('/users/:uid', function(req, res) {
+
+    var results = [];
+    var id = req.params.uid;
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        var query = client.query("SELECT * FROM users WHERE uid=($1)", [id]);
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {
+          console.log(err);
+        }
+    });
+});
+
 module.exports = router;
 

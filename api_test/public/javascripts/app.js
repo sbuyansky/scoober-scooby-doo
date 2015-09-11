@@ -18,7 +18,7 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl: "views/templates/users.html",
           controller: "accountCreateController",
           activetab: 'users'})
-        .when("/newprofile",{
+        .when("/newprofile/:uid",{
           templateUrl: "views/templates/new_profile.html",
           controller: "accountCreateController",
           activetab: 'newprofile'})

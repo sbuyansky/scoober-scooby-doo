@@ -14,8 +14,8 @@ angular.module('scoober').controller('accountCreateController', function($scope,
             console.log(error);
         });
 
-    $scope.addDemographics = function() {
-        $location.path('/newprofile');
+    $scope.addDemographics = function(uid) {
+        $location.path('/newprofile/' + uid);
     }
 
     $scope.createUser = function() {
@@ -30,7 +30,7 @@ angular.module('scoober').controller('accountCreateController', function($scope,
                 console.log('added ' + data + ' to users table');
                 // serve up new_profile page to give user the chance to fill in demographics
                 //$location.path('/newprofile');///' + eid);
-                $scope.addDemographics();
+                $scope.addDemographics(data.uid);
             })
             .error(function(error) {
                 console.log('Error: ' + error);
@@ -48,4 +48,23 @@ angular.module('scoober').controller('accountCreateController', function($scope,
             });
         userPtr.stopPropagation();
     };
+
+    $scope.getUser = function(uid){
+        $http.get('/api/users/' + uid)
+            .success(function(data){
+                $scope.userData = data[0];
+                console.log($scope.userData);
+            })
+            .error(function(error) {
+                console.log('Error: ' + error);
+            });
+    };
+
+    function init(){
+        if(typeof $routeParams.uid !== 'undefined'){
+            $scope.getUser($routeParams.uid); 
+        }
+    }
+
+    init();
 });
