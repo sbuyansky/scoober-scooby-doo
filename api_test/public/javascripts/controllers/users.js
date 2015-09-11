@@ -25,12 +25,17 @@ angular.module('scoober').controller('accountCreateController', function($scope,
                 $scope.userData = data;
                 console.log('added ' + data + ' to users table');
                 // serve up new_profile page to give user the chance to fill in demographics
-                $location.path('/newprofile');///' + eid);
+                //$location.path('/newprofile');///' + eid);
+                $scope.addDemographics();
             })
             .error(function(error) {
                 console.log('Error: ' + error);
             })
     };
+
+    $scope.addDemographics = function() {
+        $location.path('/newprofile'):
+    }
     
     $scope.deleteUser = function(uid, userPtr){
         $http.delete('/api/users/' + uid)

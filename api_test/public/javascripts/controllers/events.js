@@ -23,7 +23,7 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
             })
             .error(function(error) {
                 console.log('Error: ' + error);
-        });
+            });
     };
     
     $scope.deleteEvent = function(eid, eventPtr){
