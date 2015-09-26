@@ -29,7 +29,7 @@ angular.module('scoober').controller('accountCreateController', function($scope,
                 // TODO: instead of overwriting all userData, get api to return 1 row.
                 //   then push this row onto the $scope.userData array.
                 $scope.userData = data;
-                console.log('added ',data,' to users table');
+                console.log('new data array: ',data);
                 // serve up new_profile page to give user the chance to fill in demographics
                 //$location.path('/newprofile');///' + eid);
                 $scope.addDemographics(data[data.length-1].uid);
@@ -63,6 +63,7 @@ angular.module('scoober').controller('accountCreateController', function($scope,
     };
 
     function init(){
+        console.log('Inside Users "accountCreateController" Controller')
         if(typeof $routeParams.uid !== 'undefined'){
             $scope.getUser($routeParams.uid); 
         }

@@ -22,6 +22,10 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl: "views/templates/new_profile.html",
           controller: "accountCreateController",
           activetab: 'newprofile'})
+        .when("/users/:uid", {
+          templateUrl: 'views/templates/user_view.html',
+          controller: 'accountCreateController',
+          activetab: 'profile'})
         .otherwise({ redirectTo: "/" });
     }
   ]
