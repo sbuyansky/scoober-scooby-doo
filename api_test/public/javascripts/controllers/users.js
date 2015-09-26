@@ -62,8 +62,15 @@ angular.module('scoober').controller('accountCreateController', function($scope,
             });
     };
 
+    $scope.viewProfile = function(uid) {
+        debugger;
+        $location.path('/users/' + uid);
+    };
+
     function init(){
         console.log('Inside Users "accountCreateController" Controller')
+        // WHere do $routeParams come from / get populated?
+        debugger;
         if(typeof $routeParams.uid !== 'undefined'){
             $scope.getUser($routeParams.uid); 
         }

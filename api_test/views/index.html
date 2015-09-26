@@ -52,13 +52,14 @@
         <li ng-class="{active: $route.current.activetab == 'newprofile'}"><a href="/newprofile/9">newprofile</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Profile</a></li>
+        <!-- Now this links to user_view page -->
+        <!-- TODO: grab uid to throw in this route -->
+        <li ng-class="{active: $route.current.activetab == 'profile'}"><a href="/users/9">Profile</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">sbuyansky<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <!-- Now this links to user_view page -->
-            <!-- TODO: grab uid to throw in this route -->
-            <li ng-class="{active: $route.current.activetab == 'profile'}"><a href="/users/9">Profile</a></li>
+            <!-- TODO: hook up this Profile link like above, or remove from drop-down -->
+            <li><a href="#">Profile</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Logout</a></li>
           </ul>
