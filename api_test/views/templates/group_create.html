@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <h3>Create a group!</h3>
+    <hr>
+    <div>
+    <form novalidate role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="name">Name</label> 
+            <div class="col-md-3"><input class="form-control" id="name" type="text" ng-model="group.name"/></div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="security">Security</label> 
+            <div class="col-md-2"><select class="form-control" id="security" ng-model="group.security" ng-options="cat for cat in securityVals"/></select></div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="location">Location</label> 
+            <div class="col-md-2"><input class="form-control" id="location" type="text" ng-model="event.location"/></div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="type">Type</label>
+            <!-- TODO: create dropbox for this type, if we keep the field. -->
+            <div class="col-md-1"><input class="form-control" id="type" type="text" ng-model="event.type"/></div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="details">Details</label> 
+            <div class="col-md-1"> <textarea class="form-control" id="details" type="text" ng-model="event.details"></textarea> </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="min_players">Min. Players</label> 
+            <div class="col-md-3"><input class="form-control" id="min_players" type="text" ng-model="event.min_players"/> </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="max_players">Max. Players</label> 
+            <div class="col-md-4"><input class="form-control" id="max_players" type="text" ng-model="event.max_players"/></div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="group_photo">Group Photo</label> 
+            <div class="col-md-2">TBD</div>
+        </div>
+        <div class="col-md-5"><button type="submit" class="btn btn-primary pull-right" ng-click="createGroup()">Submit</button></div>
+    </form>
+    </div>
+    <p>Data to send = {{group}}</p>
+    <table class="table table-striped table-hover" >
+        <thead><tr>
+            <th>GID</th>
+            <th>Name</th>
+            <th>Security</th>
+        </tr></thead>
+        <tr ng-repeat="eventIter in eventsData" ng-click="viewEvent(eventIter.eid)">
+            <td>{{eventIter.eid}} </td> 
+            <td>{{eventIter.name}} </td>
+            <td>{{eventIter.event_security}} </td>
+            <td><button ng-click="deleteEvent(eventIter.eid, $event)" class="glyphicon glyphicon-remove"/></td>
+        </a>
+        </tr>
+    </table>
+</div>

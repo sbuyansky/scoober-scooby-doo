@@ -63,7 +63,6 @@ angular.module('scoober').controller('accountCreateController', function($scope,
     };
 
     $scope.viewProfile = function(uid) {
-        debugger;
         $location.path('/users/' + uid);
     };
 
