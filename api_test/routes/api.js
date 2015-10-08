@@ -321,5 +321,112 @@ router.get('/users/:uid', function(req, res) {
     });
 });
 
-module.exports = router;
+/*
+//
+// Groups
+//
+*/
 
+// Get all groups
+router.get('/groups', function(req,res){
+    var results = [];
+    pg.connect(connectionString, function(err, client, done) {
+        // TODO: Fix group table name so we're calling groups, not groups2
+        var query = client.query("SELECT * FROM groups2 ORDER BY eid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {console.log(err);}
+    });
+});
+
+// Add to groups page, return all groups
+router.post('/groups', function(req, res) {
+        var results = [];
+        console.log(req.body);
+    with(req.body){
+        var data = [
+            name,
+            security,
+            'Downtown Madison',
+            type,
+            'details',
+            '1',
+            '20',
+            'group_picture'
+        ];
+    }
+    console.log(data);
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query("INSERT INTO groups2(name, security, location, type, details, min_players, max_players, group_picture) values($1,$2,$3,$4,$5,$6,$7,$8)", data);
+
+        var query = client.query("SELECT * FROM groups2 ORDER BY eid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {console.log(err);}
+    });
+});
+
+// delete group (gid), return all groups
+router.delete('/groups/:gid', function(req, res) {
+    var results = [];
+    var id = req.params.gid;
+    
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query("DELETE FROM groups2 WHERE eid=($1)", [id]);
+
+        var query = client.query("SELECT * FROM groups2 ORDER BY eid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {console.log(err);}
+    });
+});
+
+// get 1 group (gid)
+router.get('/groups/:gid', function(req, res) {
+    var results = [];
+    var id = req.params.eid;
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        var query = client.query("SELECT * FROM groups2 WHERE eid=($1)", [id]);
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {console.log(err);}
+    });
+});
+
+module.exports = router;
