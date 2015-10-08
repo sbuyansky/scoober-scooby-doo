@@ -15,7 +15,7 @@ angular.module('scoober').controller('groupController', function($scope, $http, 
             console.log(error);
         });
 
-    $scope.creategroup = function(){
+    $scope.createGroup = function(){
         $http.post('/api/groups', $scope.group)
              .success(function(data) {
                 $scope.formData = {};
@@ -26,7 +26,7 @@ angular.module('scoober').controller('groupController', function($scope, $http, 
             });
     };
     
-    $scope.deletegroup = function(gid, groupPtr){
+    $scope.deleteGroup = function(gid, groupPtr){
         $http.delete('/api/groups/' + gid)
             .success(function(data) {
                 $scope.groupsData = data;
@@ -37,7 +37,7 @@ angular.module('scoober').controller('groupController', function($scope, $http, 
         groupPtr.stopPropagation();
     };
 
-    $scope.getgroup = function(gid){
+    $scope.getGroup = function(gid){
         $http.get('/api/groups/' + gid)
             .success(function(data){
                 $scope.groupData = data[0];
@@ -48,7 +48,7 @@ angular.module('scoober').controller('groupController', function($scope, $http, 
             });
     };
 
-    $scope.viewgroup = function(gid){
+    $scope.viewGroup = function(gid){
         $location.path('/group/' + gid);
     };
     //all of the get/post/delete http functions return an http
@@ -72,7 +72,7 @@ angular.module('scoober').controller('groupController', function($scope, $http, 
         getCategoryValues("group_type");
         
         if(typeof $routeParams.gid !== 'undefined'){
-            $scope.getgroup($routeParams.gid); 
+            $scope.getGroup($routeParams.gid); 
         }
     }
 
