@@ -332,7 +332,7 @@ router.get('/groups', function(req,res){
     var results = [];
     pg.connect(connectionString, function(err, client, done) {
         // TODO: Fix group table name so we're calling groups, not groups2
-        var query = client.query("SELECT * FROM groups2 ORDER BY eid ASC");
+        var query = client.query("SELECT * FROM groups2 ORDER BY gid ASC");
 
         query.on('row', function(row) {
             results.push(row);
@@ -368,7 +368,7 @@ router.post('/groups', function(req, res) {
 
         client.query("INSERT INTO groups2(name, security, location, type, details, min_players, max_players, group_picture) values($1,$2,$3,$4,$5,$6,$7,$8)", data);
 
-        var query = client.query("SELECT * FROM groups2 ORDER BY eid ASC");
+        var query = client.query("SELECT * FROM groups2 ORDER BY gid ASC");
 
         query.on('row', function(row) {
             results.push(row);
@@ -390,9 +390,9 @@ router.delete('/groups/:gid', function(req, res) {
     
     pg.connect(connectionString, function(err, client, done) {
 
-        client.query("DELETE FROM groups2 WHERE eid=($1)", [id]);
+        client.query("DELETE FROM groups2 WHERE gid=($1)", [id]);
 
-        var query = client.query("SELECT * FROM groups2 ORDER BY eid ASC");
+        var query = client.query("SELECT * FROM groups2 ORDER BY gid ASC");
 
         query.on('row', function(row) {
             results.push(row);
@@ -410,11 +410,11 @@ router.delete('/groups/:gid', function(req, res) {
 // get 1 group (gid)
 router.get('/groups/:gid', function(req, res) {
     var results = [];
-    var id = req.params.eid;
+    var id = req.params.gid;
 
     pg.connect(connectionString, function(err, client, done) {
 
-        var query = client.query("SELECT * FROM groups2 WHERE eid=($1)", [id]);
+        var query = client.query("SELECT * FROM groups2 WHERE gid=($1)", [id]);
 
         query.on('row', function(row) {
             results.push(row);
