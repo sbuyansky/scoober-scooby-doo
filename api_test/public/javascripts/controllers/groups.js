@@ -66,8 +66,9 @@ angular.module('scoober').controller('groupController', function($scope, $http, 
                 $scope[category + "Vals"] = vals;
             });
     };
+
     function init(){
-        //initialize category values
+        //initialize category values by grabbing ENUM names
         getCategoryValues("security");
         getCategoryValues("group_type");
         

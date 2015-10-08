@@ -356,7 +356,7 @@ router.post('/groups', function(req, res) {
             name,
             security,
             'Downtown Madison',
-            type,
+            group_type,
             'details',
             '1',
             '20',
@@ -366,7 +366,7 @@ router.post('/groups', function(req, res) {
     console.log(data);
     pg.connect(connectionString, function(err, client, done) {
 
-        client.query("INSERT INTO groups2(name, security, location, type, details, min_players, max_players, group_picture) values($1,$2,$3,$4,$5,$6,$7,$8)", data);
+        client.query("INSERT INTO groups2(name, group_security, location, group_type, details, min_players, max_players, group_picture) values($1,$2,$3,$4,$5,$6,$7,$8)", data);
 
         var query = client.query("SELECT * FROM groups2 ORDER BY gid ASC");
 
