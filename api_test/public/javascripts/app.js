@@ -30,6 +30,10 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl: "/views/templates/group_create.html",
           controller: "groupController",
           activetab: "group_create"})
+        .when("/group/:gid", {
+          templateUrl: "/views/templates/group_view.html",
+          controller: "groupController",
+          activetab: 'group_create'})
         .otherwise({ redirectTo: "/" });
     }
   ]
