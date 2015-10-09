@@ -14,7 +14,7 @@
 	                <tr>
 	                <!--TODO pull email from database -->
 	                    <td>Email</td>
-	                    <td>TODO PUT AN EMAIL HERE</td>
+	                    <td>{{ userData.email }}</td>
 	                </tr>
 	                <tr>
 	                    <td>Username</td>
@@ -60,7 +60,8 @@
     	</div>
     	<hr>
         <div>
-        	<button ng-click="submit()">Submit</button>
+        	<!-- uid comes from userData object, not user. They're different :) -->
+        	<button ng-click="viewProfile(userData.uid)">Submit</button>
         </div>
 	</form>
 	<div>

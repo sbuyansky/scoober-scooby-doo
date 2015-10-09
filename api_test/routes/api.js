@@ -23,17 +23,17 @@ router.get('/events', function(req,res){
     pg.connect(connectionString, function(err, client, done) {
 		var query = client.query("SELECT * FROM events ORDER BY eid ASC");
 
-	        query.on('row', function(row) {
-	            results.push(row);
-	        });
+        query.on('row', function(row) {
+            results.push(row);
+        });
 
-	        query.on('end', function() {
-	            client.end();
-	            return res.json(results);
-	        });
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
 
-	        if(err) {
-	          console.log(err);
+        if(err) {
+            console.log(err);
 		}
     });
 });
@@ -54,8 +54,8 @@ router.get('/category/:category', function(req,res){
         });
 
         if(err) {
-          console.log(err);
-	}
+            console.log(err);
+		}
     });
 });
 
@@ -136,7 +136,7 @@ router.post('/events', function(req, res) {
         });
 
         if(err) {
-          console.log(err);
+            console.log(err);
         }
 
     });
@@ -164,7 +164,7 @@ router.delete('/events/:eid', function(req, res) {
         });
 
         if(err) {
-          console.log(err);
+            console.log(err);
         }
     });
 });
@@ -172,7 +172,6 @@ router.delete('/events/:eid', function(req, res) {
 router.get('/events/:eid', function(req, res) {
 
     var results = [];
-
     var id = req.params.eid;
 
     pg.connect(connectionString, function(err, client, done) {
@@ -189,7 +188,7 @@ router.get('/events/:eid', function(req, res) {
         });
 
         if(err) {
-          console.log(err);
+            console.log(err);
         }
     });
 });
@@ -256,6 +255,8 @@ router.post('/users', function(req, res) {
 
 		var query = client.query("SELECT * FROM users ORDER BY uid ASC");
 
+		// TODO: instead of returning all data, try to return just 1 user.
+		//   continuation = changing code in user.js
 		query.on('row', function(row) {
 			results.push(row);
 		});
@@ -296,5 +297,135 @@ router.delete('/users/:uid', function(req, res) {
     });
 });
 
-module.exports = router;
+router.get('/users/:uid', function(req, res) {
 
+    var results = [];
+    var id = req.params.uid;
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        var query = client.query("SELECT * FROM users WHERE uid=($1)", [id]);
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {
+          console.log(err);
+        }
+    });
+});
+
+/*
+//
+// Groups
+//
+*/
+
+// Get all groups
+router.get('/groups', function(req,res){
+    var results = [];
+    pg.connect(connectionString, function(err, client, done) {
+        var query = client.query("SELECT * FROM groups ORDER BY gid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {console.log(err);}
+    });
+});
+
+// Add to groups page, return all groups
+router.post('/groups', function(req, res) {
+    var results = [];
+    console.log(req.body);
+    with(req.body){
+        var data = [
+            name,
+            security,
+            'Downtown Madison',
+            group_type,
+            'details',
+            '1',
+            '20',
+            'group_picture'
+        ];
+    }
+    console.log(data);
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query("INSERT INTO groups(name, group_security, location, group_type, details, min_players, max_players, group_picture) values($1,$2,$3,$4,$5,$6,$7,$8)", data);
+
+        var query = client.query("SELECT * FROM groups ORDER BY gid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {console.log(err);}
+    });
+});
+
+// delete group (gid), return all groups
+router.delete('/groups/:gid', function(req, res) {
+    var results = [];
+    var id = req.params.gid;
+    
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query("DELETE FROM groups WHERE gid=($1)", [id]);
+
+        var query = client.query("SELECT * FROM groups ORDER BY gid ASC");
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {console.log(err);}
+    });
+});
+
+// get 1 group (gid)
+router.get('/groups/:gid', function(req, res) {
+    var results = [];
+    var id = req.params.gid;
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        var query = client.query("SELECT * FROM groups WHERE gid=($1)", [id]);
+
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            client.end();
+            return res.json(results);
+        });
+
+        if(err) {console.log(err);}
+    });
+});
+
+module.exports = router;

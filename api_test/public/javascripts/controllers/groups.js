@@ -1,55 +1,55 @@
-/* event controller */
+/* Groups controller */
 
-angular.module('scoober').controller('eventController', function($scope, $http, $routeParams, $location){
+angular.module('scoober').controller('groupController', function($scope, $http, $routeParams, $location){
     //initialize array vars
     $scope.formData ={};
-    $scope.eventsData ={};
-    $scope.eventData = {};
+    $scope.groupsData ={};
+    $scope.groupData = {};
     
-    // get all events just to display for testing
-    $http.get('/api/events')
+    // get all groups just to display for testing
+    $http.get('/api/groups')
         .success(function(data){
-            $scope.eventsData = data;
+            $scope.groupsData = data;
         })
         .error(function(error){
             console.log(error);
         });
 
-    $scope.createEvent = function(){
-        $http.post('/api/events', $scope.event)
+    $scope.createGroup = function(){
+        $http.post('/api/groups', $scope.group)
              .success(function(data) {
                 $scope.formData = {};
-                $scope.eventsData = data;
+                $scope.groupsData = data;
             })
             .error(function(error) {
                 console.log('Error: ' + error);
             });
     };
     
-    $scope.deleteEvent = function(eid, eventPtr){
-        $http.delete('/api/events/' + eid)
+    $scope.deleteGroup = function(gid, groupPtr){
+        $http.delete('/api/groups/' + gid)
             .success(function(data) {
-                $scope.eventsData = data;
+                $scope.groupsData = data;
             })
             .error(function(error) {
                 console.log('Error: ' + error);
             });
-        eventPtr.stopPropagation();
+        groupPtr.stopPropagation();
     };
 
-    $scope.getEvent = function(eid){
-        $http.get('/api/events/' + eid)
+    $scope.getGroup = function(gid){
+        $http.get('/api/groups/' + gid)
             .success(function(data){
-                $scope.eventData = data[0];
-                console.log($scope.eventData);
+                $scope.groupData = data[0];
+                console.log($scope.groupData);
             })
             .error(function(error) {
                 console.log('Error: ' + error);
             });
     };
 
-    $scope.viewEvent = function(eid){
-        $location.path('/event/' + eid);
+    $scope.viewGroup = function(gid){
+        $location.path('/group/' + gid);
     };
     //all of the get/post/delete http functions return an http
     //promise, you will not have data immediately after executing
@@ -66,16 +66,14 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
                 $scope[category + "Vals"] = vals;
             });
     };
+
     function init(){
-        //initialize category values
-        getCategoryValues("sport");
+        //initialize category values by grabbing ENUM names
         getCategoryValues("security");
-        getCategoryValues("event_type");
-        getCategoryValues("event_gendered");
-        getCategoryValues("event_status");
+        getCategoryValues("group_type");
         
-        if(typeof $routeParams.eid !== 'undefined'){
-            $scope.getEvent($routeParams.eid); 
+        if(typeof $routeParams.gid !== 'undefined'){
+            $scope.getGroup($routeParams.gid); 
         }
     }
 

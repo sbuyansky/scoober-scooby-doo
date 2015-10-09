@@ -18,10 +18,22 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl: "views/templates/users.html",
           controller: "accountCreateController",
           activetab: 'users'})
-        .when("/newprofile",{
+        .when("/newprofile/:uid",{
           templateUrl: "views/templates/new_profile.html",
           controller: "accountCreateController",
           activetab: 'newprofile'})
+        .when("/users/:uid", {
+          templateUrl: 'views/templates/user_view.html',
+          controller: 'accountCreateController',
+          activetab: 'profile'})
+        .when("/groups/create", {
+          templateUrl: "/views/templates/group_create.html",
+          controller: "groupController",
+          activetab: "group_create"})
+        .when("/group/:gid", {
+          templateUrl: "/views/templates/group_view.html",
+          controller: "groupController",
+          activetab: 'group_create'})
         .otherwise({ redirectTo: "/" });
     }
   ]
