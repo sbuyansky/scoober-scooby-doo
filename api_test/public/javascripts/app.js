@@ -34,11 +34,15 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl: "/views/templates/group_view.html",
           controller: "groupController",
           activetab: 'group_create'})
-        // TODO add uid for admin
+        // TODO add uid for admin (for security reasons)
         //.when("/admin/users/:uid")
         .when("/admin/groups", {
           templateUrl: "/views/templates/admin/groups.html",
           controller: "groupController",
+          activetab: 'admin'})
+        .when("/admin/users", {
+          templateUrl: "/views/templates/admin/users.html",
+          controller: "accountCreateController",
           activetab: 'admin'})
         .otherwise({ redirectTo: "/" });
     }
