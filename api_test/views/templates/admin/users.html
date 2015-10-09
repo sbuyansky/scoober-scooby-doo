@@ -16,5 +16,18 @@
                 </table>
                 <br>
         </form>
+<table class="table table-striped table-hover" >
+    <thead><tr>
+        <th>uid</th>
+        <th>Email</th>
+        <th>Password</th>
+    </tr></thead>
+    <tr ng-repeat="userIter in userData">
+        <td>{{userIter.uid}} </td> 
+        <td>{{userIter.email}} </td>
+        <td>{{userIter.password}} </td>
+        <td><button ng-click="deleteUser(userIter.uid, $event)" class="glyphicon glyphicon-remove"/></td>
+    </tr>
+</table>
         <p>Data to send = {{user}}</p>
 </div>

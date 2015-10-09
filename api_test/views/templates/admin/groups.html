@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <table class="table table-striped table-hover" >
+        <thead><tr>
+            <th>GID</th>
+            <th>Name</th>
+            <th>Security</th>
+        </tr></thead>
+        <tr ng-repeat="groupIter in groupsData" ng-click="viewGroup(groupIter.gid)">
+            <td>{{groupIter.gid}} </td> 
+            <td>{{groupIter.name}} </td>
+            <td>{{groupIter.security}} </td>
+            <td><button ng-click="deleteGroup(groupIter.gid, $event)" class="glyphicon glyphicon-remove"/></td>
+        </a>
+        </tr>
+    </table>
+</div>
