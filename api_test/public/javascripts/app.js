@@ -49,6 +49,10 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl:"/views/templates/home.html",
           controller: "accountCreateController",
           activetab: 'home'}) 
+        .when("/login", {
+          templateUrl:"/views/templates/user_login.html",
+          controller: "accountCreateController",
+          activetab: 'login'}) 
         .otherwise({ redirectTo: "/" });
     }
   ]
