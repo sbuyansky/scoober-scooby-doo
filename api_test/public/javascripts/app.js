@@ -36,6 +36,10 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           activetab: 'group_create'})
         // TODO add uid for admin
         //.when("/admin/users/:uid")
+        .when("/admin/events", {
+          templateUrl: "/views/templates/admin/events.html",
+          controller: "eventController",
+          activetab: 'admin'})
         .when("/admin/groups", {
           templateUrl: "/views/templates/admin/groups.html",
           controller: "groupController",
