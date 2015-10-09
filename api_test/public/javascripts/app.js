@@ -34,6 +34,12 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl: "/views/templates/group_view.html",
           controller: "groupController",
           activetab: 'group_create'})
+        // TODO add uid for admin
+        //.when("/admin/users/:uid")
+        .when("/admin/groups", {
+          templateUrl: "/views/templates/admin/groups.html",
+          controller: "groupController",
+          activetab: 'admin'})
         .otherwise({ redirectTo: "/" });
     }
   ]
