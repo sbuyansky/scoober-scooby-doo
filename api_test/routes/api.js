@@ -331,8 +331,7 @@ router.get('/users/:uid', function(req, res) {
 router.get('/groups', function(req,res){
     var results = [];
     pg.connect(connectionString, function(err, client, done) {
-        // TODO: Fix group table name so we're calling groups, not groups2
-        var query = client.query("SELECT * FROM groups2 ORDER BY gid ASC");
+        var query = client.query("SELECT * FROM groups ORDER BY gid ASC");
 
         query.on('row', function(row) {
             results.push(row);
@@ -366,9 +365,9 @@ router.post('/groups', function(req, res) {
     console.log(data);
     pg.connect(connectionString, function(err, client, done) {
 
-        client.query("INSERT INTO groups2(name, group_security, location, group_type, details, min_players, max_players, group_picture) values($1,$2,$3,$4,$5,$6,$7,$8)", data);
+        client.query("INSERT INTO groups(name, group_security, location, group_type, details, min_players, max_players, group_picture) values($1,$2,$3,$4,$5,$6,$7,$8)", data);
 
-        var query = client.query("SELECT * FROM groups2 ORDER BY gid ASC");
+        var query = client.query("SELECT * FROM groups ORDER BY gid ASC");
 
         query.on('row', function(row) {
             results.push(row);
@@ -390,9 +389,9 @@ router.delete('/groups/:gid', function(req, res) {
     
     pg.connect(connectionString, function(err, client, done) {
 
-        client.query("DELETE FROM groups2 WHERE gid=($1)", [id]);
+        client.query("DELETE FROM groups WHERE gid=($1)", [id]);
 
-        var query = client.query("SELECT * FROM groups2 ORDER BY gid ASC");
+        var query = client.query("SELECT * FROM groups ORDER BY gid ASC");
 
         query.on('row', function(row) {
             results.push(row);
@@ -414,7 +413,7 @@ router.get('/groups/:gid', function(req, res) {
 
     pg.connect(connectionString, function(err, client, done) {
 
-        var query = client.query("SELECT * FROM groups2 WHERE gid=($1)", [id]);
+        var query = client.query("SELECT * FROM groups WHERE gid=($1)", [id]);
 
         query.on('row', function(row) {
             results.push(row);
