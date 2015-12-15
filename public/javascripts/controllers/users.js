@@ -1,6 +1,6 @@
-/*App & Controller for initial_signup html*/
+/*App & Controller for users*/
 
-angular.module('scoober').controller('accountCreateController', function($scope, $http, $routeParams, $location){
+angular.module('scoober').controller('userController', function($scope, $http, $routeParams, $location){
 
     $scope.userData = {};
 
@@ -65,6 +65,10 @@ angular.module('scoober').controller('accountCreateController', function($scope,
     $scope.viewProfile = function(uid) {
         $location.path('/users/' + uid);
     };
+    
+    $scope.signUp = function() {
+        $location.path('/signup')
+    }
 
     function init(){
         console.log('Inside Users "accountCreateController" Controller')
