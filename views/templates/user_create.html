@@ -11,7 +11,11 @@
         <label class="col-md-1 control-label" for="password">Password</label> 
         <div class="col-md-2"><input class="form-control" id="password" type="password" ng-model="user.password"/></div>
       </div>
-      <div class="col-md-3"><button type="submit" class="btn btn-primary pull-right" ng-click="loginUser()">Log In</button></div>
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="passcopy">Password again</label> 
+        <div class="col-md-2"><input class="form-control" id="passcopy" type="password" ng-model="user.pass_copy"/></div>
+      </div>
+      <div class="col-md-3"><button type="submit" class="btn btn-primary pull-right" ng-click="createUser()">Submit</button></div>
     </form>
 		</br> </br>
   </div>

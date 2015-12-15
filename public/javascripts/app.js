@@ -44,15 +44,20 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl: "/views/templates/admin/users.html",
           controller: "accountCreateController",
           activetab: 'admin'})
+        // Login/Signup
+        .when("/login", {
+          templateUrl:"/views/templates/user_login.html",
+          controller: "userController",
+          activetab: 'login'})
+        .when("/signup", {
+          templateUrl:"/views/templates/user_create.html",
+          controller: "userController",
+          activetab: 'signup'})
         // Serve up home page:
         .when("/", {
           templateUrl:"/views/templates/home.html",
           controller: "accountCreateController",
-          activetab: 'home'}) 
-        .when("/login", {
-          templateUrl:"/views/templates/user_login.html",
-          controller: "accountCreateController",
-          activetab: 'login'}) 
+          activetab: 'home'})  
         .otherwise({ redirectTo: "/" });
     }
   ]
