@@ -16,7 +16,12 @@ angular.module('scoober').controller('userController', function($scope, $http, $
 
     $scope.addDemographics = function(uid) {
         $location.path('/newprofile/' + uid);
-    }
+    };
+
+    $scope.loginUser = function() {
+        console.log("woot, log in the user!");
+        debugger;
+    };
 
     $scope.createUser = function() {
         //var passCopy = $scope.user.pass_copy;
