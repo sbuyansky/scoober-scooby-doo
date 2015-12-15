@@ -52,7 +52,7 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
         .when("/signup", {
           templateUrl:"/views/templates/user_create.html",
           controller: "userController",
-          activetab: 'login'})
+          activetab: 'signup'})
         // Serve up home page:
         .when("/", {
           templateUrl:"/views/templates/home.html",
