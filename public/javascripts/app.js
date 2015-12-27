@@ -7,6 +7,10 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
       $locationProvider.html5Mode(true); //get rid of hashtags, will have to test with older browsers
       $routeProvider
         .when("/events", {
+          templateUrl: "/views/templates/event_list.html",
+          controller: "eventController",
+          activetab: 'events'})
+				.when("/events/create", {
           templateUrl: "/views/templates/event_create.html",
           controller: "eventController",
           activetab: 'events'})
