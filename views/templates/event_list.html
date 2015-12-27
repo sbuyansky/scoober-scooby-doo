@@ -3,28 +3,30 @@
 	<h1>My Events</h1>
 	<hr>
 	<a class="btn btn-primary" href="/events/create">+ Create a New Event</a>
-	<div class="row" ng-repeat="event in eventsData">
-		<div class='col-md-4'>
-			<h3 class="event-name">{{ event.name }}</h3>
-			<p class="event-location">{{ event.location_name }}</p>
-			<p class="event-date">{{ event.time_start | date:'fullDate'}}</p>
-			<p class="event-time">{{ event.time_start | date:'shortTime' }} - {{ event.time_end | date:'shortTime' }}</p>
-		</div>
-		<div class='col-md-3'>
-			<!--TODO: add functionality for pulling google maps image-->
-			<p> LOCATION IMAGE </p>
-		</div>
-		<div class='col-md-3'>
-			<!--TODO: Add functionality for showing images-->
-			<p> FIELD MAP </p>
-		</div>
-		<div class='col-md-2'>
-			<!--TODO: Connect status changes to functionality, perhaps using an ng-model and ng-change or another directive-->
-			<select>
-				<option value="attending">Attending</option>
-				<option value="interested">Interested</option>
-				<option value="not-attending">Not Attending</option>
-			</select>
-		</div>
-	</div>
+	<table class="table table-striped table-hover" >
+		<tr ng-repeat="event in eventsData" ng-click="viewEvent(eventIter.eid)">
+			<td class='col-md-4'>
+				<h3 class="event-name">{{ event.name }}</h3>
+				<p class="event-location">{{ event.location_name }}</p>
+				<p class="event-date">{{ event.time_start | date:'fullDate'}}</p>
+				<p class="event-time">{{ event.time_start | date:'shortTime' }} - {{ event.time_end | date:'shortTime' }}</p>
+			</td>
+			<td class='col-md-3'>
+				<!--TODO: add functionality for pulling google maps image-->
+				<p> LOCATION IMAGE </p>
+			</td>
+			<td class='col-md-3'>
+				<!--TODO: Add functionality for showing images-->
+				<p> FIELD MAP </p>
+			</td>
+			<td class='col-md-2'>
+				<!--TODO: Connect status changes to functionality, perhaps using an ng-model and ng-change or another directive-->
+				<select>
+					<option value="attending">Attending</option>
+					<option value="interested">Interested</option>
+					<option value="not-attending">Not Attending</option>
+				</select>
+			</td>
+		</tr>
+	</table>
 </div>
