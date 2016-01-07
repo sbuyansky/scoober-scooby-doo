@@ -51,6 +51,16 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
     $scope.viewEvent = function(eid){
         $location.path('/event/' + eid);
     };
+    
+    /*function that loads details for an event, expanding the event row*/
+    $scope.eventDetailToggle = function(eid) {
+        //TODO: add database call for data that we need
+        if ($scope.showMe == eid) {
+            $scope.showMe = 0;
+        } else {
+            $scope.showMe = eid;
+        }
+    }
     //all of the get/post/delete http functions return an http
     //promise, you will not have data immediately after executing
     //but must pass a callback function to execute after success/failure
