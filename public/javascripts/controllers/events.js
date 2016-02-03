@@ -53,13 +53,10 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
     };
     
     /*function that loads details for an event, expanding the event row*/
-    $scope.eventDetailToggle = function(eid) {
-        //TODO: add database call for data that we need
-        if ($scope.showMe == eid) {
-            $scope.showMe = 0;
-        } else {
-            $scope.showMe = eid;
-        }
+    $scope.eventDetailToggle = function(index) {
+        var HTMLid = '#detail-row-'+ index;
+        // jQuery call to toggle show / hide the event details div
+        $(HTMLid).toggle(400);
     }
     //all of the get/post/delete http functions return an http
     //promise, you will not have data immediately after executing

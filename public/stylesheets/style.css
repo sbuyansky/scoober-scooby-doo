@@ -10,3 +10,7 @@ a {
 .event-content:nth-of-type(odd) {
 	background-color: #cccccc;
 }
+
+.event-content:hover {
+	background-color: #3399ff;
+}
