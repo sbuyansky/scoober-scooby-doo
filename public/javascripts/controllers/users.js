@@ -76,7 +76,6 @@ angular.module('scoober').controller('userController', function($scope, $http, $
     }
 
     function init(){
-        console.log('Inside Users "accountCreateController" Controller')
         // $routeParams comes from the route paramters... duh
         //  aka for /newprofile/9, uid is parameter of 9 [app.js looks for /newprofile/:uid]
         if(typeof $routeParams.uid !== 'undefined'){

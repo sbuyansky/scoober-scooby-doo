@@ -23,11 +23,7 @@
 				</div>
 				<!--TODO: Connect status changes to functionality, perhaps using an ng-model and ng-change or another directive-->
 				<div class='col-md-2'>
-					<select>
-						<option value="attending">Attending</option>
-						<option value="interested">Interested</option>
-						<option value="not-attending">Not Attending</option>
-					</select>
+					<select ng-change="updateAttendance()" ng-model="attend_status" ng-options="status.display_name for status in attend_statuses"></select>
 					<br>
 					<button type="button" class="btn btn-primary" ng-click="viewEvent(event.eid)"><span class="glyphicon glyphicon-road"></span> View</button>
 				</div>

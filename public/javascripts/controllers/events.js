@@ -1,10 +1,22 @@
 /* event controller */
 
-angular.module('scoober').controller('eventController', function($scope, $http, $routeParams, $location){
+angular.module('scoober').controller('eventController', function($scope, $http, $routeParams, $location, getLoginUser){
     //initialize array vars
     $scope.formData ={};
     $scope.eventsData ={};
     $scope.eventData = {};
+    
+    $scope.attend_statuses = [{
+        display_name:"Not Attending",
+        value:"none"
+    },{
+        display_name:"Attending",
+        value:"attending"
+    },{
+        display_name:"Interested",
+        value:"following"
+    }];
+    $scope.attend_status = $scope.attend_statuses[0]; // default to not attending
     
     // get all events just to display for testing
     $http.get('/api/events')
@@ -57,7 +69,12 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
         var HTMLid = '#detail-row-'+ index;
         // jQuery call to toggle show / hide the event details div
         $(HTMLid).toggle(400);
-    }
+    };
+
+    
+    $scope.updateAttendance = function(){
+        console.log("update attendance!");
+    };
     //all of the get/post/delete http functions return an http
     //promise, you will not have data immediately after executing
     //but must pass a callback function to execute after success/failure
@@ -73,6 +90,7 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
                 $scope[category + "Vals"] = vals;
             });
     };
+    
     function init(){
         //initialize category values
         getCategoryValues("sport");
@@ -84,7 +102,10 @@ angular.module('scoober').controller('eventController', function($scope, $http, 
         if(typeof $routeParams.eid !== 'undefined'){
             $scope.getEvent($routeParams.eid); 
         }
-    }
+        
+        // get the login user
+        $scope.userID = getLoginUser();
+    };
 
     init();
 });

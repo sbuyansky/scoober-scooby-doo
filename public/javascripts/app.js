@@ -20,11 +20,11 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           activetab: 'events'})
         .when("/newprofile/:uid",{
           templateUrl: "views/templates/new_profile.html",
-          controller: "accountCreateController",
+          controller: "userController",
           activetab: 'newprofile'})
         .when("/users/:uid", {
           templateUrl: 'views/templates/user_view.html',
-          controller: 'accountCreateController',
+          controller: 'userController',
           activetab: 'profile'})
         .when("/groups/create", {
           templateUrl: "/views/templates/group_create.html",
@@ -46,7 +46,7 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           activetab: 'admin'})
         .when("/admin/users", {
           templateUrl: "/views/templates/admin/users.html",
-          controller: "accountCreateController",
+          controller: "userController",
           activetab: 'admin'})
         // Login/Signup
         .when("/login", {
@@ -60,7 +60,7 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
         // Serve up home page:
         .when("/", {
           templateUrl:"/views/templates/home.html",
-          controller: "accountCreateController",
+          controller: "userController",
           activetab: 'home'})  
         .otherwise({ redirectTo: "/" });
     }
