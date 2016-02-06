@@ -30,9 +30,10 @@
     <script src="javascripts/controllers/users.js"></script>
     <script src="javascripts/controllers/events.js"></script>
     <script src="javascripts/controllers/groups.js"></script>
+
+    <!--Services-->
+    <script src="javascripts/services/login.js"></script>
 		
-		<!--Services-->
-		<script src="javascripts/services/login.js"></script>
 </head>
 
 <body>
@@ -53,7 +54,8 @@
     <!-- I expect these serve up pages in javascripts\app.js -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ng-class="{active: $route.current.activetab == 'events'}"><a href="/events">Events</a></li>
+        <li ng-class="{active: $route.current.activetab == 'events'}"><a href="/events">My Events</a></li>
+        <li ng-class="{active: $route.current.activetab == 'event_search'}"><a href="/events/search">Event Search</a></li>
         <!-- Give 'new profile' user 9 for testing. -->
         <!-- TODO: get rid of this tab from the menu bar eventually -->
         <li ng-class="{active: $route.current.activetab == 'newprofile'}"><a href="/newprofile/9">newprofile</a></li>

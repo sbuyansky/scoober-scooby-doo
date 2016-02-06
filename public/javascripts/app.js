@@ -14,6 +14,10 @@ var app = angular.module('scoober', ["ngResource","ngRoute"]).
           templateUrl: "/views/templates/event_create.html",
           controller: "eventController",
           activetab: 'events'})
+        .when("/events/search", {
+          templateUrl: "/views/templates/event_search.html",
+          controller: "eventController",
+          activetab: 'event_search'})
         .when("/event/:eid", {
           templateUrl: "/views/templates/event_view.html",
           controller: "eventController",
